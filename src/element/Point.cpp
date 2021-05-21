@@ -1,0 +1,11 @@
+
+Point::Point(){
+
+
+}
+
+
+Point::~Point(){
+
+
+}

@@ -193,10 +193,22 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
 }
 
 bool HdmapEngine::paserJunction(XMLElement* junctionNode){
-
-    
-
+   
+   Junction junction; 
    cout<<"解析junction"<<endl;
+   junction.id=atoi(junctionNode->Attribute("id"));
+   XMLElement* connectionNode=junctionNode->FirstChildElement("connection");
+   whie(connectionNode!=NULL){
+     junction.in_road_id=atoi(connectionNode->Attribute("incomingRoad"));
+     
+
+   	connectionNode=connectionNode->NextSiblingElement("connection");
+   }
+
+   
+
+
+
 
 }
 

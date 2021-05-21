@@ -1,0 +1,7 @@
+Junction::Junction(){
+
+}
+
+Junction::~Junction(){
+	
+}
