@@ -2,7 +2,7 @@
 #ifndef _HDMAPENGINE_H_
 #define _HDMAPENGINE_H_
 #include <iostream>
-#include "tinyxml2.h"
+#include "tinyxml/tinyxml2.h"
 #include"element/Road.h"
 #include"element/Lane.h"
 #include<vector>
@@ -12,18 +12,21 @@ using namespace tinyxml2;
 
 class HdmapEngine
 {
+
+private :
+    bool paserLaneSection(XMLElement* sectionNode,Road& road);
+	bool paserLane(XMLElement* laneNode,LaneSection& laneSection);
+	bool paserJunction(XMLElement* junctionNode);
+	bool paserRoad(XMLElement* roadNode);
+	void printRoad();
 public:
 	vector<Road> roadList;
-	vector<Lane> LaneList;
+	vector<Lane> laneList;
+	vector<LaneSection> lansectionList;
 	HdmapEngine();
 	~HdmapEngine();
-	void printRoad();
 	bool paserApolloxml(const char* file_name);
-	bool paserLaneSection(XMLElement* section);
-	bool paserLane(XMLElement* lane);
-	bool paserJunction(XMLElement* junction);
-
-	bool paserRoad(XMLElement* road);
+	
 	
 };
 

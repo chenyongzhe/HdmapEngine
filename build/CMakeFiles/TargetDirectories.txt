@@ -1,3 +1,0 @@
-/home/jlurobot/project/HdmapEngine/build/CMakeFiles/rebuild_cache.dir
-/home/jlurobot/project/HdmapEngine/build/CMakeFiles/edit_cache.dir
-/home/jlurobot/project/HdmapEngine/build/CMakeFiles/HdmapEngine.dir

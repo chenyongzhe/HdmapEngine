@@ -10,8 +10,8 @@ public:
 	LaneSection();
 	~LaneSection();
 	double length;
-    vector<Lane> Lanes;
-    int LaneSection_id;
+    vector<Lane> lanes;
+    int laneSection_id;
 	
 };
 

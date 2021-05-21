@@ -2,7 +2,7 @@
 #ifndef _ROAD_H_
 #define _ROAD_H_
 #include <iostream>
-#include "tinyxml2.h"
+#include "tinyxml/tinyxml2.h"
 #include <string>
 #include"element/LaneSection.h"
 using namespace std;
@@ -21,7 +21,7 @@ public:
 	string successor_elementType;
 
 	double road_length=-1;
-	vector<LaneSection> LaneSections;
+	vector<LaneSection> laneSections;
 
  static  double  parser_length_fromxML(XMLElement* lanes); 
 
