@@ -19,6 +19,11 @@ public:
 	~HdmapEngine();
 	void printRoad();
 	bool paserApolloxml(const char* file_name);
+	bool paserLaneSection(XMLElement* section);
+	bool paserLane(XMLElement* lane);
+	bool paserJunction(XMLElement* junction);
+
+	bool paserRoad(XMLElement* road);
 	
 };
 

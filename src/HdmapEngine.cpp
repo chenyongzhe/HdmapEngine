@@ -18,6 +18,30 @@ void HdmapEngine::printRoad(){
 	}
 }
 
+
+bool HdmapEngine::paserLaneSection(XMLElement* section){
+
+
+
+}
+
+
+bool HdmapEngine::paserLane(XMLElement* lane){
+
+
+	
+}
+
+bool HdmapEngine::paserJunction(XMLElement* junction){
+
+
+}
+
+bool HdmapEngine::paserRoad(XMLElement* road){
+	
+}
+
+
 bool HdmapEngine::paserApolloxml(const char* file_name){
 
     tinyxml2::XMLDocument doc;
