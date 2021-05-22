@@ -4,12 +4,33 @@
 
 #include<string>
 #include <iostream>
-#include "tinyxml2.h"
+#include "tinyxml/tinyxml2.h"
 #include<vector>
+#include"element/Point.h"
 using namespace std;
 using namespace tinyxml2;
 
 using namespace std;
+//车道宽度
+
+struct WidthsampleAssociate
+{
+	double sOffset;
+	double leftWidth;
+	double rightWidth;
+	double width;
+} ;
+//车道类型
+struct BorderType
+{
+	string type;
+	string color;
+	double sOffset;
+	double eOffset;
+	
+};
+
+
 class Lane
 {
 public:
@@ -42,6 +63,17 @@ public:
 	string type;
 	//车道方向:forward、backward、bidirection unknow ....
 	string direction;
+	//车道中心点参考线（离散点）
+	 vector<Point> centerLinePoints;
+
+	 //车道宽度采样
+    vector<WidthsampleAssociate> widthsampleAssociates;
+    //车道边界类型
+    vector<BorderType>  borderTypes;
+    //车道边界点
+    vector<Point> borderPoints;
+
+
 
 
 	

@@ -150,6 +150,33 @@ src/HdmapEngine.cpp.s:
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.s
 .PHONY : src/HdmapEngine.cpp.s
 
+src/element/Connection.o: src/element/Connection.cpp.o
+
+.PHONY : src/element/Connection.o
+
+# target to build an object file
+src/element/Connection.cpp.o:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.o
+.PHONY : src/element/Connection.cpp.o
+
+src/element/Connection.i: src/element/Connection.cpp.i
+
+.PHONY : src/element/Connection.i
+
+# target to preprocess a source file
+src/element/Connection.cpp.i:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.i
+.PHONY : src/element/Connection.cpp.i
+
+src/element/Connection.s: src/element/Connection.cpp.s
+
+.PHONY : src/element/Connection.s
+
+# target to generate assembly for a file
+src/element/Connection.cpp.s:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.s
+.PHONY : src/element/Connection.cpp.s
+
 src/element/Junction.o: src/element/Junction.cpp.o
 
 .PHONY : src/element/Junction.o
@@ -351,6 +378,9 @@ help:
 	@echo "... src/HdmapEngine.o"
 	@echo "... src/HdmapEngine.i"
 	@echo "... src/HdmapEngine.s"
+	@echo "... src/element/Connection.o"
+	@echo "... src/element/Connection.i"
+	@echo "... src/element/Connection.s"
 	@echo "... src/element/Junction.o"
 	@echo "... src/element/Junction.i"
 	@echo "... src/element/Junction.s"

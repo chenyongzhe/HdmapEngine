@@ -15,12 +15,18 @@ element/Road.h
 ../include/element/Road.h
 element/Lane.h
 ../include/element/Lane.h
+element/Connection.h
+../include/element/Connection.h
 element/Junction.h
 ../include/element/Junction.h
+element/LaneSection.h
+../include/element/LaneSection.h
 vector
 -
+map
+-
 
-../include/element/Junction.h
+../include/element/Connection.h
 element/Point.h
 ../include/element/element/Point.h
 string
@@ -28,15 +34,23 @@ string
 vector
 -
 
+../include/element/Junction.h
+vector
+-
+element/Connection.h
+../include/element/element/Connection.h
+
 ../include/element/Lane.h
 string
 -
 iostream
 -
-tinyxml2.h
-../include/element/tinyxml2.h
+tinyxml/tinyxml2.h
+../include/element/tinyxml/tinyxml2.h
 vector
 -
+element/Point.h
+../include/element/element/Point.h
 
 ../include/element/LaneSection.h
 element/Lane.h
@@ -89,6 +103,10 @@ assert.h
 /home/jlurobot/project/HdmapEngine/src/HdmapEngine.cpp
 HdmapEngine.h
 /home/jlurobot/project/HdmapEngine/src/HdmapEngine.h
+
+/home/jlurobot/project/HdmapEngine/src/element/Connection.cpp
+element/Connection.h
+/home/jlurobot/project/HdmapEngine/src/element/element/Connection.h
 
 /home/jlurobot/project/HdmapEngine/src/element/Junction.cpp
 element/Junction.h

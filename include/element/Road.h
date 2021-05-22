@@ -11,7 +11,7 @@ class Road
 {
 public:
 	Road();
-	Road(int road_id,string & predecessor_elementType,int predecessor_id, string successor_elementType,int successor_id,double road_length);
+	Road(int road_id,string & predecessor_elementType,int predecessor_id, string successor_elementType,int successor_id);
 	~Road();
 	//道路id
 	int road_id;
@@ -20,10 +20,10 @@ public:
 	int successor_id;
 	string successor_elementType;
 
-	double road_length=-1;
+	double length=-1;
 	vector<LaneSection> laneSections;
 
- static  double  parser_length_fromxML(XMLElement* lanes); 
+   double  getRoadLength(); 
 
 	
 };
