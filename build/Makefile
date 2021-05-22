@@ -150,6 +150,33 @@ src/HdmapEngine.cpp.s:
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.s
 .PHONY : src/HdmapEngine.cpp.s
 
+src/element/Junction.o: src/element/Junction.cpp.o
+
+.PHONY : src/element/Junction.o
+
+# target to build an object file
+src/element/Junction.cpp.o:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Junction.cpp.o
+.PHONY : src/element/Junction.cpp.o
+
+src/element/Junction.i: src/element/Junction.cpp.i
+
+.PHONY : src/element/Junction.i
+
+# target to preprocess a source file
+src/element/Junction.cpp.i:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Junction.cpp.i
+.PHONY : src/element/Junction.cpp.i
+
+src/element/Junction.s: src/element/Junction.cpp.s
+
+.PHONY : src/element/Junction.s
+
+# target to generate assembly for a file
+src/element/Junction.cpp.s:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Junction.cpp.s
+.PHONY : src/element/Junction.cpp.s
+
 src/element/Lane.o: src/element/Lane.cpp.o
 
 .PHONY : src/element/Lane.o
@@ -203,6 +230,33 @@ src/element/LaneSection.s: src/element/LaneSection.cpp.s
 src/element/LaneSection.cpp.s:
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.s
 .PHONY : src/element/LaneSection.cpp.s
+
+src/element/Point.o: src/element/Point.cpp.o
+
+.PHONY : src/element/Point.o
+
+# target to build an object file
+src/element/Point.cpp.o:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.o
+.PHONY : src/element/Point.cpp.o
+
+src/element/Point.i: src/element/Point.cpp.i
+
+.PHONY : src/element/Point.i
+
+# target to preprocess a source file
+src/element/Point.cpp.i:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.i
+.PHONY : src/element/Point.cpp.i
+
+src/element/Point.s: src/element/Point.cpp.s
+
+.PHONY : src/element/Point.s
+
+# target to generate assembly for a file
+src/element/Point.cpp.s:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.s
+.PHONY : src/element/Point.cpp.s
 
 src/element/Road.o: src/element/Road.cpp.o
 
@@ -297,12 +351,18 @@ help:
 	@echo "... src/HdmapEngine.o"
 	@echo "... src/HdmapEngine.i"
 	@echo "... src/HdmapEngine.s"
+	@echo "... src/element/Junction.o"
+	@echo "... src/element/Junction.i"
+	@echo "... src/element/Junction.s"
 	@echo "... src/element/Lane.o"
 	@echo "... src/element/Lane.i"
 	@echo "... src/element/Lane.s"
 	@echo "... src/element/LaneSection.o"
 	@echo "... src/element/LaneSection.i"
 	@echo "... src/element/LaneSection.s"
+	@echo "... src/element/Point.o"
+	@echo "... src/element/Point.i"
+	@echo "... src/element/Point.s"
 	@echo "... src/element/Road.o"
 	@echo "... src/element/Road.i"
 	@echo "... src/element/Road.s"

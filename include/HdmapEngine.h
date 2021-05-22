@@ -5,6 +5,7 @@
 #include "tinyxml/tinyxml2.h"
 #include"element/Road.h"
 #include"element/Lane.h"
+#include"element/Junction.h"
 #include<vector>
 using namespace std;
 using namespace tinyxml2;

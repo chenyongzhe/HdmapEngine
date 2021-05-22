@@ -1,3 +1,4 @@
+#include"element/Junction.h"
 Junction::Junction(){
 
 }

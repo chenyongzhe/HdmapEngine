@@ -12,7 +12,29 @@ HdmapEngine::~HdmapEngine(){
 }
 
 
+vector<string> split(const string& str, const string& delim) {  
+  vector<string> res;  
+  if("" == str) return res;  
+  //先将要切割的字符串从string类型转换为char*类型  
+  char * strs = new char[str.length() + 1] ; //不要忘了  
+  strcpy(strs, str.c_str());   
+ 
+  char * d = new char[delim.length() + 1];  
+  strcpy(d, delim.c_str());  
+ 
+  char *p = strtok(strs, d);  
+  while(p) {  
+    string s = p; //分割得到的字符串转换为string类型  
+    res.push_back(s); //存入结果数组  
+    p = strtok(NULL, d);  
+  }  
+ 
+  return res;  
+} 
+
+
 void HdmapEngine::printRoad(){
+	cout<<"section size"<<lansectionList.size()<<endl;
 	for (int i = 0; i < roadList.size(); ++i)
 	{
 		cout<<"road_id "<<roadList[i].road_id<<" "<<"predecessor_elementType "<<roadList[i].predecessor_elementType<<" "<<"predecessor_id " <<roadList[i].predecessor_id<<" "<<"road_length"<<roadList[i].road_length<<endl;
@@ -192,15 +214,79 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
 	
 }
 
+
+
+
 bool HdmapEngine::paserJunction(XMLElement* junctionNode){
    
    Junction junction; 
    cout<<"解析junction"<<endl;
    junction.id=atoi(junctionNode->Attribute("id"));
    XMLElement* connectionNode=junctionNode->FirstChildElement("connection");
-   whie(connectionNode!=NULL){
-     junction.in_road_id=atoi(connectionNode->Attribute("incomingRoad"));
-     
+   while(connectionNode!=NULL){
+     int in_road_id=atoi(connectionNode->Attribute("incomingRoad"));
+     junction.in_road_id=in_road_id;
+     int connectionRoad_id=atoi(connectionNode->Attribute("connectingRoad"));
+     for(int i=0;i<roadList.size();i++){
+     	//cout<<"i"<<i<<endl;
+     	//cout<<"roadid "<<roadList[i].road_id<<endl;
+     	//cout<<"inroadid"<<in_road_id<<endl;
+       if(roadList[i].road_id==in_road_id){
+       	  //cout<<"laneSections size"<<roadList[i].laneSections.size()<<endl;
+          for(int j=0;j<roadList[i].laneSections.size();j++){
+          	//cout<<"j"<<j<<endl;
+            for(int z=0;z<roadList[i].laneSections[j].lanes.size();z++){
+            	//cout<<"z"<<z<<endl;
+              for(int y=0;y<roadList[i].laneSections[j].lanes[z].successors.size();y++){
+              	   //cout<<"y"<<y<<endl;
+                    if(atoi(split(roadList[i].laneSections[j].lanes[z].successors[y],"_")[0].c_str())==connectionRoad_id){
+                      cout<<"进入路口车道为"<<roadList[i].laneSections[j].lanes[z].uid<<" 路口虚拟车道为 "<<roadList[i].laneSections[j].lanes[z].successors[y];
+                     
+
+                    //搜索驶离路口的车道
+                     
+                    for(int a=0;a<roadList.size();a++){
+                       if(roadList[a].road_id==atoi(split(roadList[i].laneSections[j].lanes[z].successors[y],"_")[0].c_str())){
+                       	int section_index=atoi(split(roadList[i].laneSections[j].lanes[z].successors[y],"_")[1].c_str());
+                       for(int b=0;b<roadList[a].laneSections[section_index].lanes.size();b++){
+                           if(roadList[a].laneSections[section_index].lanes[b].uid==roadList[i].laneSections[j].lanes[z].successors[y]){
+                             cout<<"驶离路口的车道 ";
+                             for(int c=0;c<roadList[a].laneSections[section_index].lanes[b].successors.size();c++){
+                             	cout<<roadList[a].laneSections[section_index].lanes[b].successors[c]<<endl;
+
+
+                             }
+
+                           }
+                         
+
+                         }
+
+                       }
+
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+                    
+
+
+
+                    }
+              }  
+            }
+          }
+        }
+     }
 
    	connectionNode=connectionNode->NextSiblingElement("connection");
    }
@@ -245,7 +331,7 @@ bool HdmapEngine::paserRoad(XMLElement* roadNode){
 
      Road road(road_id,predecessor_elementType,predecessor_id,successor_elementType,successor_id,Road::parser_length_fromxML(lanes));
 
-     roadList.push_back(road);
+     
      laneSection_id=0;
      
      while(laneSection!=NULL){
@@ -255,6 +341,8 @@ bool HdmapEngine::paserRoad(XMLElement* roadNode){
         laneSection_id++;
      	laneSection = laneSection->NextSiblingElement("laneSection");
      }
+
+     roadList.push_back(road);
 
 
 
