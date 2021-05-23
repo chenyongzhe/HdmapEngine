@@ -366,6 +366,33 @@ src/tinyxml/tinyxml2.cpp.s:
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tinyxml/tinyxml2.cpp.s
 .PHONY : src/tinyxml/tinyxml2.cpp.s
 
+src/tools/TransformUtil.o: src/tools/TransformUtil.cpp.o
+
+.PHONY : src/tools/TransformUtil.o
+
+# target to build an object file
+src/tools/TransformUtil.cpp.o:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/TransformUtil.cpp.o
+.PHONY : src/tools/TransformUtil.cpp.o
+
+src/tools/TransformUtil.i: src/tools/TransformUtil.cpp.i
+
+.PHONY : src/tools/TransformUtil.i
+
+# target to preprocess a source file
+src/tools/TransformUtil.cpp.i:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/TransformUtil.cpp.i
+.PHONY : src/tools/TransformUtil.cpp.i
+
+src/tools/TransformUtil.s: src/tools/TransformUtil.cpp.s
+
+.PHONY : src/tools/TransformUtil.s
+
+# target to generate assembly for a file
+src/tools/TransformUtil.cpp.s:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/TransformUtil.cpp.s
+.PHONY : src/tools/TransformUtil.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -402,6 +429,9 @@ help:
 	@echo "... src/tinyxml/tinyxml2.o"
 	@echo "... src/tinyxml/tinyxml2.i"
 	@echo "... src/tinyxml/tinyxml2.s"
+	@echo "... src/tools/TransformUtil.o"
+	@echo "... src/tools/TransformUtil.i"
+	@echo "... src/tools/TransformUtil.s"
 .PHONY : help
 
 

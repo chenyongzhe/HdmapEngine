@@ -1,3 +1,7 @@
+//@author chenyonzghe
+//Email 1276316543@qq.com
+
+
 #include"HdmapEngine.h"
 
 
@@ -33,15 +37,18 @@ vector<string> split(const string& str, const string& delim) {
 } 
 
 
-void HdmapEngine::printRoad(){
+void HdmapEngine::printBaseInfo(){
+   cout<<"road size"<<roadList.size()<<endl;
 	cout<<"section size"<<lansectionList.size()<<endl;
+  cout<<"lane size "<<laneList.size()<<endl;
+  cout<<"connection size"<<connectionList.size()<<endl;
 	for (int i = 0; i < roadList.size(); ++i)
 	{
-		cout<<"road_id "<<roadList[i].road_id<<" "<<"predecessor_elementType "<<roadList[i].predecessor_elementType<<" "<<"predecessor_id " <<roadList[i].successor_elementType<<" "<<"successor_elementType "<<roadList[i].successor_elementType<<" "<<"  successor_id " <<roadList[i].successor_id<<"  road_length  "<<roadList[i].length<<endl;
+		cout<<"road_id "<<roadList[i].road_id<<" "<<"predecessor_elementType "<<roadList[i].predecessor_elementType<<" "<<"predecessor_id " <<roadList[i].predecessor_id<<" "<<"successor_elementType "<<roadList[i].successor_elementType<<" "<<"  successor_id " <<roadList[i].successor_id<<"  road_length  "<<roadList[i].length<<endl;
 	}
 }
 
-
+//解析Lanesection
 bool HdmapEngine::paserLaneSection(XMLElement* sectionNode,Road& road){
   //cout<<"解析Lanesection"<<endl;
   LaneSection section;
@@ -291,7 +298,7 @@ bool HdmapEngine::paserJunction(XMLElement* junctionNode){
    Junction junction;
 
    Connection connection; 
-   cout<<"解析junction"<<endl;
+   //cout<<"解析junction"<<endl;
    connection.junction_id=atoi(junctionNode->Attribute("id"));
    junction.id=atoi(junctionNode->Attribute("id"));
    XMLElement* connectionNode=junctionNode->FirstChildElement("connection");
@@ -342,8 +349,6 @@ bool HdmapEngine::paserJunction(XMLElement* junctionNode){
                              	junction.connections.push_back(connection);
                              	connectionMap[connection.virtualLaneId]=connection;
 
-
-
                              }
 
                            }
@@ -373,9 +378,140 @@ bool HdmapEngine::paserJunction(XMLElement* junctionNode){
 
 }
 
+
+
+bool HdmapEngine::paserStopLineCrosswalk(XMLElement* roadNode,Road &road){
+
+    XMLElement* objectsNode=roadNode->FirstChildElement("objects");
+    if(objectsNode!=NULL){
+      XMLElement* objectNode=objectsNode->FirstChildElement("object");
+      if(objectNode!=NULL){
+        if(objectNode->Attribute("type")!=NULL){
+        string objtype=objectNode->Attribute("type");
+        if(objtype=="stopline"){
+          cout<<"stopline"<<endl;
+          StopLine stopline;
+          stopline.id=atoi(objectNode->Attribute("id"));
+          XMLElement* geometryNode=objectNode->FirstChildElement("geometry");
+          if(geometryNode!=NULL){
+              XMLElement* pointSetNode=geometryNode->FirstChildElement("pointSet");
+              if(pointSetNode!=NULL){
+                XMLElement* pointNode=pointSetNode->FirstChildElement("point");
+                while(pointNode!=NULL){
+                    Point point;
+                    //cout<<"point1"<<endl;
+                    point.x =atof(pointNode->Attribute("x"));
+                    point.y =atof(pointNode->Attribute("y"));
+                    point.z =atof(pointNode->Attribute("z"));
+                    //cout<<"point"<<endl;
+                    stopline.points.push_back(point);
+                    road.stopLines.push_back(stopline);
+                    stopLineMap[stopline.id]=stopline;
+                    pointNode=pointNode->NextSiblingElement("point");
+                }
+              }
+            }
+            //解析crosswalk
+          }else if(objtype=="crosswalk"){
+            cout<<"crosswalk"<<endl;
+            Crosswalk crosswalk;
+            string id=objectNode->Attribute("id");
+            crosswalk.id=id;
+            XMLElement* outlineNode=objectNode->FirstChildElement("outline");
+            if(outlineNode!=NULL){
+              XMLElement* cornerGlobalNode=outlineNode->FirstChildElement("cornerGlobal");
+              while(cornerGlobalNode!=NULL){
+                Point point;
+                point.x =atof(cornerGlobalNode->Attribute("x"));
+                point.y =atof(cornerGlobalNode->Attribute("y"));
+                point.z =atof(cornerGlobalNode->Attribute("z"));
+                crosswalk.outline.push_back(point);
+                road.crosswalks.push_back(crosswalk);
+                cornerGlobalNode=cornerGlobalNode->NextSiblingElement("cornerGlobal");
+              }
+            }
+          }
+        }
+      
+       objectNode = objectNode->NextSiblingElement("object"); 
+      }
+    
+    }
+
+    
+
+
+}
+
+
+//解析交通灯
+bool HdmapEngine::paserTrafficLight(XMLElement* roadNode,Road &road){
+
+   XMLElement* signalsNode=roadNode->FirstChildElement("signals");
+   if(signalsNode!=NULL){
+      XMLElement* signalNode =signalsNode->FirstChildElement("signal");
+      while(signalNode!=NULL){
+        TrafficLight trafficLight;
+        if(signalsNode->Attribute("type")!=NULL){
+          string signaltype=signalsNode->Attribute("type");
+          if(signaltype=="trafficLight"){
+            trafficLight.id=atoi(signalsNode->Attribute("id"));
+            trafficLight.layoutType=signalsNode->Attribute("mix3Vertical");
+            XMLElement* outlineNode =signalsNode->FirstChildElement("outline");
+            if(outlineNode!=NULL){
+              XMLElement* cornerGlobalNode=outlineNode->FirstChildElement("cornerGlobal");
+              while(cornerGlobalNode!=NULL){
+                Point point;
+                point.x=atof(cornerGlobalNode->Attribute("x"));
+                point.y=atof(cornerGlobalNode->Attribute("y"));
+                point.z=atof(cornerGlobalNode->Attribute("z"));
+                trafficLight.outline.push_back(point);
+                cornerGlobalNode=cornerGlobalNode-> NextSiblingElement("cornerGlobal");
+              }
+              
+              XMLElement* nextNode  =outlineNode->NextSiblingElement();
+              while(nextNode!=NULL){
+                string name=nextNode->Name();
+                if(name=="stopline"){
+                  XMLElement* objectReferenceNode=nextNode->FirstChildElement("objectReference");
+                  if(objectReferenceNode!=NULL){
+                  string stoplineid=objectReferenceNode->Attribute("id");
+                  auto stopLineiter=stopLineMap.find(stoplineid);
+                  if(stopLineiter!=stopLineMap.end()){
+                    trafficLight.stopLines.push_back(stopLineiter->second);
+                  } 
+                  } 
+                }else if(name=="subSignal"){
+                  SubSignal subSignal;
+                  subSignal.id=atoi(nextNode->Attribute("id"));
+                  subSignal.type=nextNode->Attribute("type");
+                  XMLElement* centerPointNode=nextNode->FirstChildElement("centerPoint");
+                  if(centerPointNode!=NULL){
+                    subSignal.x=atof(centerPointNode->Attribute("x"));
+                    subSignal.y=atof(centerPointNode->Attribute("y"));
+                    subSignal.z=atof(centerPointNode->Attribute("z"));
+
+                  }
+                  trafficLight.subSignals.push_back(subSignal);
+                }
+                nextNode=nextNode->NextSiblingElement();
+              }
+            }
+          }
+        }
+        signalNode=signalsNode->NextSiblingElement("signal");
+      }
+
+   }
+}
+
+
+
+
+
 bool HdmapEngine::paserRoad(XMLElement* roadNode){
 
-	 string predecessor_elementType;
+	  string predecessor_elementType;
 	  int predecessor_id=INT_MAX;
 	  int successor_id=INT_MAX;
 	  string successor_elementType;
@@ -410,7 +546,7 @@ bool HdmapEngine::paserRoad(XMLElement* roadNode){
 
      
      laneSection_id=0;
-     
+     //lanesection
      while(laneSection!=NULL){
         
         paserLaneSection(laneSection,road);
@@ -418,6 +554,13 @@ bool HdmapEngine::paserRoad(XMLElement* roadNode){
         laneSection_id++;
      	laneSection = laneSection->NextSiblingElement("laneSection");
      }
+
+
+    //解析stopline 
+
+    paserStopLineCrosswalk(roadNode,road);
+
+
      road.length=road.getRoadLength();
      roadList.push_back(road);
      roadMap[road.road_id]=road;
@@ -462,8 +605,8 @@ bool HdmapEngine::paserApolloxml(const char* file_name){
        
 		
 	}
-    cout<<"road size"<<roadList.size()<<endl;
-		printRoad();
+   
+		//printRoad();
 
 	return true;
 

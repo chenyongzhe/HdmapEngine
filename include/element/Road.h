@@ -5,6 +5,9 @@
 #include "tinyxml/tinyxml2.h"
 #include <string>
 #include"element/LaneSection.h"
+#include"element/StopLine.h"
+#include"element/Crosswalk.h"
+#include"element/TrafficLight.h"
 using namespace std;
 using namespace tinyxml2;
 class Road
@@ -21,7 +24,15 @@ public:
 	string successor_elementType;
 
 	double length=-1;
+	//lanesection
 	vector<LaneSection> laneSections;
+	//停止线
+	vector<StopLine> stopLines;
+	//人行横道
+    vector<Crosswalk> crosswalks;
+    //交通灯
+    vector<TrafficLight> trafficLights;
+
 
    double  getRoadLength(); 
 

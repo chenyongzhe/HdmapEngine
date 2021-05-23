@@ -9,8 +9,11 @@ class LaneSection
 public:
 	LaneSection();
 	~LaneSection();
+	//长度
 	double length;
+	//车道列表
     vector<Lane> lanes;
+    //laneSection id
     int laneSection_id;
 	
 };

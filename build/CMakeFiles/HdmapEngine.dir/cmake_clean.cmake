@@ -8,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/HdmapEngine.dir/src/element/Junction.cpp.o"
   "CMakeFiles/HdmapEngine.dir/src/element/Road.cpp.o"
   "CMakeFiles/HdmapEngine.dir/src/tinyxml/tinyxml2.cpp.o"
+  "CMakeFiles/HdmapEngine.dir/src/tools/TransformUtil.cpp.o"
   "HdmapEngine.pdb"
   "HdmapEngine"
 )

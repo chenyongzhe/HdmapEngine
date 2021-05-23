@@ -40,7 +40,6 @@ public:
 	string uid;
 	//车道前驱id 可能多个前驱
 	vector<string> predecessors;
-	string predecessor_id;
 	//车道后继id 可能多个后继
 	vector<string> successors;
 	//左邻近同向车道
@@ -72,10 +71,6 @@ public:
     vector<BorderType>  borderTypes;
     //车道边界点
     vector<Point> borderPoints;
-
-
-
-
 	
 };
 #endif

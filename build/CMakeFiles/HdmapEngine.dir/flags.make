@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jlurobot/project/HdmapEngine/include 
+CXX_INCLUDES = -I/usr/include/eigen3 -I/home/jlurobot/project/HdmapEngine/include 
 
