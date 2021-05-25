@@ -390,6 +390,47 @@ bool HdmapEngine::paserJunction(XMLElement* junctionNode){
    	connectionNode=connectionNode->NextSiblingElement("connection");
    }
 
+
+
+    XMLElement* outlineNode=junctionNode->FirstChildElement("outline");
+    if(outlineNode!=NULL){
+      XMLElement* cornerGlobalNode=outlineNode->FirstChildElement("cornerGlobal");
+      while(cornerGlobalNode!=NULL){
+       Point point;
+       point.lon=atof(cornerGlobalNode->Attribute("x"));
+       point.lat=atof(cornerGlobalNode->Attribute("y"));
+       Eigen::Vector3d xyz(0,0,0);
+       trans->gps2xyz(point.lon, point.lat, 235.120,xyz);
+       //std::cout<<xyz;
+       point.x=xyz[0];
+       point.y=xyz[1];
+      //cout<<"x: "<< point.x<<" y: "<<point.y<<endl;
+       point.z=atof(cornerGlobalNode->Attribute("z"));
+       //point.lane_id=lane.uid;
+       junction.outline.push_back(point);
+
+       cornerGlobalNode=cornerGlobalNode->NextSiblingElement("cornerGlobal");
+      }
+
+      Point p;
+      for(int index=0;index<junction.outline.size();index++){
+        p.x+=junction.outline[index].x;
+        p.y+=junction.outline[index].y;
+        p.z+=junction.outline[index].z;
+
+      }
+      p.x=p.x/junction.outline.size();
+      p.y=p.y/junction.outline.size();
+      p.z=p.z/junction.outline.size();
+      junction.center=p;
+      cout<<"路口中心点 x: "<<p.x<<" y:  "<<p.y<<"  z:"<<p.z<<endl;
+
+
+     
+    }
+   
+
+
    junctionList.push_back(junction);
    junctionMap[junction.id]=junction;
    

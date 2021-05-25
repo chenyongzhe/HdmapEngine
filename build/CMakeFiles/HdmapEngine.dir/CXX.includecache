@@ -57,6 +57,8 @@ vector
 -
 element/Connection.h
 ../include/element/element/Connection.h
+element/Point.h
+../include/element/element/Point.h
 
 ../include/element/Lane.h
 string
