@@ -8,7 +8,9 @@
 int road_id;
 int laneSection_id=0;
 
-HdmapEngine::HdmapEngine(){
+HdmapEngine::HdmapEngine(double lat,double lon,double alt){
+  trans=new TransformUtil(lat,lon,alt);
+  tree=new KDTree ();
 	
 }
 HdmapEngine::~HdmapEngine(){
@@ -42,10 +44,22 @@ void HdmapEngine::printBaseInfo(){
 	cout<<"section size"<<lansectionList.size()<<endl;
   cout<<"lane size "<<laneList.size()<<endl;
   cout<<"connection size"<<connectionList.size()<<endl;
-	for (int i = 0; i < roadList.size(); ++i)
-	{
-		cout<<"road_id "<<roadList[i].road_id<<" "<<"predecessor_elementType "<<roadList[i].predecessor_elementType<<" "<<"predecessor_id " <<roadList[i].predecessor_id<<" "<<"successor_elementType "<<roadList[i].successor_elementType<<" "<<"  successor_id " <<roadList[i].successor_id<<"  road_length  "<<roadList[i].length<<endl;
-	}
+  vector<Point> centerLintePoints;
+  for(int i=0;i<laneList.size();i++){
+    //if(laneList[i].centerLinePoints!=NULL)
+    for(int j=0;j<laneList[i].centerLinePoints.size();j++){
+      centerLintePoints.push_back(laneList[i].centerLinePoints[j]);
+    }  
+
+  }
+  cout<<"centerpoint size "<<centerLintePoints.size()<<endl;
+ tree->read_in(centerLintePoints);
+ //cout<<"centerpoint size "<<centerLintePoints.size()<<endl;
+  cout<<"创建搜索树成功"<<endl;
+	// for (int i = 0; i < roadList.size(); ++i)
+	// {
+	// 	cout<<"road_id "<<roadList[i].road_id<<" "<<"predecessor_elementType "<<roadList[i].predecessor_elementType<<" "<<"predecessor_id " <<roadList[i].predecessor_id<<" "<<"successor_elementType "<<roadList[i].successor_elementType<<" "<<"  successor_id " <<roadList[i].successor_id<<"  road_length  "<<roadList[i].length<<endl;
+	// }
 }
 
 //解析Lanesection
@@ -147,9 +161,16 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
        	  XMLElement* pointNode=pointSetNode->FirstChildElement("point");
        	  while(pointNode!=NULL){
             Point point;
-            point.x=atof(pointNode->Attribute("x"));
-            point.y=atof(pointNode->Attribute("y"));
+            point.lon=atof(pointNode->Attribute("x"));
+            point.lat=atof(pointNode->Attribute("y"));
+            Eigen::Vector3d xyz(0,0,0);
+            trans->gps2xyz(point.lon, point.lat, 235.120,xyz);
+            //std::cout<<xyz;
+            point.x=xyz[0];
+            point.y=xyz[1];
+            //cout<<"x: "<< point.x<<" y: "<<point.y<<endl;
             point.z=atof(pointNode->Attribute("z"));
+            point.lane_id=lane.uid;
             //cout<<"x "<< point.x<<" y "<<point.y<<"  z "<<point.z<<endl;
             lane.centerLinePoints.push_back(point);
        	  	pointNode=pointNode->NextSiblingElement("point");

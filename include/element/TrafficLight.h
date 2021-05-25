@@ -11,7 +11,12 @@ struct SubSignal
 	int id;
 	//子信号类型 circle ...
 	string type;
-	//center point x y z
+	//center point 
+	//经度
+	double lon;
+	//纬度
+	double lat;
+    //东北天 x y z
 	double x;
 	double y;
 	double z;

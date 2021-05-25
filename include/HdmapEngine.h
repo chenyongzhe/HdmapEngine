@@ -15,6 +15,9 @@
 #include<map>
 using namespace std;
 using namespace tinyxml2;
+#include"tools/TransformUtil.h"
+#include"tools/KDTree.h"
+
 
 
 class HdmapEngine
@@ -59,12 +62,16 @@ public:
 	//connection列表 
 	vector<Connection> connectionList;
 
-	HdmapEngine();
+	HdmapEngine(double lat,double lon,double alt);
 	~HdmapEngine();
 	//解析apollo xml函数
 	bool paserApolloxml(const char* file_name);
 	//打印基本信息
 	void printBaseInfo();
+	//坐标转化工具
+	TransformUtil* trans;
+	//搜索树
+	KDTree* tree;
 	
 	
 };
