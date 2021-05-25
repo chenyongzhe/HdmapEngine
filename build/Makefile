@@ -366,6 +366,33 @@ src/tinyxml/tinyxml2.cpp.s:
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tinyxml/tinyxml2.cpp.s
 .PHONY : src/tinyxml/tinyxml2.cpp.s
 
+src/tools/KD-tree.o: src/tools/KD-tree.cpp.o
+
+.PHONY : src/tools/KD-tree.o
+
+# target to build an object file
+src/tools/KD-tree.cpp.o:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/KD-tree.cpp.o
+.PHONY : src/tools/KD-tree.cpp.o
+
+src/tools/KD-tree.i: src/tools/KD-tree.cpp.i
+
+.PHONY : src/tools/KD-tree.i
+
+# target to preprocess a source file
+src/tools/KD-tree.cpp.i:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/KD-tree.cpp.i
+.PHONY : src/tools/KD-tree.cpp.i
+
+src/tools/KD-tree.s: src/tools/KD-tree.cpp.s
+
+.PHONY : src/tools/KD-tree.s
+
+# target to generate assembly for a file
+src/tools/KD-tree.cpp.s:
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/KD-tree.cpp.s
+.PHONY : src/tools/KD-tree.cpp.s
+
 src/tools/TransformUtil.o: src/tools/TransformUtil.cpp.o
 
 .PHONY : src/tools/TransformUtil.o
@@ -429,6 +456,9 @@ help:
 	@echo "... src/tinyxml/tinyxml2.o"
 	@echo "... src/tinyxml/tinyxml2.i"
 	@echo "... src/tinyxml/tinyxml2.s"
+	@echo "... src/tools/KD-tree.o"
+	@echo "... src/tools/KD-tree.i"
+	@echo "... src/tools/KD-tree.s"
 	@echo "... src/tools/TransformUtil.o"
 	@echo "... src/tools/TransformUtil.i"
 	@echo "... src/tools/TransformUtil.s"
