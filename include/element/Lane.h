@@ -36,6 +36,8 @@ class Lane
 public:
 	Lane();
 	~Lane();
+	//车道id
+	int id;
 	//车道uid
 	string uid;
 	//车道前驱id 可能多个前驱
@@ -67,10 +69,24 @@ public:
 
 	 //车道宽度采样
     vector<WidthsampleAssociate> widthsampleAssociates;
-    //车道边界类型
+
+    //车道边界类型(xml里的)
     vector<BorderType>  borderTypes;
-    //车道边界点
+    //车道边界点（xml里的）
     vector<Point> borderPoints;
+
+
+     //车道左右边界
+     //左边界点
+     vector<Point> leftPoints;
+     //车道左边界类型
+     vector<BorderType>  leftborderTypes;
+    //右边界点
+     vector<Point> rightPoints;
+     //车道右边界类型
+    vector<BorderType>  rightborderTypes;
+
+
 	
 };
 #endif

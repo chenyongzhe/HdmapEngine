@@ -47,7 +47,7 @@ public:
 	map<int,LaneSection> laneSectionMap;
 	//Junction哈希表，用于通过id快速搜索Junction
 	map<int, Junction> junctionMap;
-	//connection哈希表，用于通过id快速搜索路口连接关系
+	//connection哈希表，用于通过vitruallane_id快速搜索路口连接关系
 	map<string,Connection> connectionMap;
 	//stopLine哈希表，用于通过id快速搜索停车线
 	map<string,StopLine> stopLineMap;
@@ -68,10 +68,16 @@ public:
 	bool paserApolloxml(const char* file_name);
 	//打印基本信息
 	void printBaseInfo();
+	Road * getRoadBetweenJunctions(Junction& jun_first,Junction& jun_second);
+
+	//通过坐标搜索出车道
+    Lane * searchLaneByxy(double x,double y);
+
 	//坐标转化工具
 	TransformUtil* trans;
 	//搜索树
 	KDTree* tree;
+
 	
 	
 };

@@ -18,6 +18,8 @@ public:
 	~Road();
 	//道路id
 	int road_id;
+	//标记是否路口道路
+	bool isJunctionRoad;
 	string predecessor_elementType;
 	int predecessor_id;
 	int successor_id;
