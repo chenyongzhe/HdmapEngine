@@ -21,7 +21,7 @@ cmake 版本高于2.8<br>
 3. Lane 车道  --->对应 xml 里的 Lane标签<br>
 4. Junction 路口  --->对应 xml 里的 junction标签<br>
 5. connection 路口内车道连接关系 --> 对应 xml 里的 connection标签<br>
-6. StopLine 提车线 <br>
+6. StopLine 停车线 <br>
 7. TrfficLight 信号灯 <br>
 8. Crosswalk 人行横道<br>
 每个元素具体属性参考 include/element/ 下的头文件内的注释<br>
@@ -44,6 +44,6 @@ cp LanePoints.txt ../showMap/<br>
 2. 使用python 显示车道点<br>
 cd showMap<br>
 python show.py<br>
-效果<br>
+效果：<br>
 <img src="https://raw.githubusercontent.com/chenyongzhe/HdmapEngine/master/showMap/map2.png" width=500 height=300/><br>
 
