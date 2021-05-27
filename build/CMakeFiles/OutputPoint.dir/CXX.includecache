@@ -172,6 +172,14 @@ Eigen/LU
 HdmapEngine.h
 /home/jlurobot/project/HdmapEngine/src/HdMapEngine/HdmapEngine.h
 
+/home/jlurobot/project/HdmapEngine/src/OutputPoint.cpp
+HdmapEngine.h
+/home/jlurobot/project/HdmapEngine/src/HdmapEngine.h
+tools/TransformUtil.h
+/home/jlurobot/project/HdmapEngine/src/tools/TransformUtil.h
+tools/KDTree.h
+/home/jlurobot/project/HdmapEngine/src/tools/KDTree.h
+
 /home/jlurobot/project/HdmapEngine/src/element/Connection.cpp
 element/Connection.h
 /home/jlurobot/project/HdmapEngine/src/element/element/Connection.h
@@ -195,14 +203,6 @@ element/Point.h
 /home/jlurobot/project/HdmapEngine/src/element/Road.cpp
 element/Road.h
 /home/jlurobot/project/HdmapEngine/src/element/element/Road.h
-
-/home/jlurobot/project/HdmapEngine/src/main.cpp
-HdmapEngine.h
-/home/jlurobot/project/HdmapEngine/src/HdmapEngine.h
-tools/TransformUtil.h
-/home/jlurobot/project/HdmapEngine/src/tools/TransformUtil.h
-tools/KDTree.h
-/home/jlurobot/project/HdmapEngine/src/tools/KDTree.h
 
 /home/jlurobot/project/HdmapEngine/src/tinyxml/tinyxml2.cpp
 tinyxml/tinyxml2.h

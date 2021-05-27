@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/HdmapEngine.dir/src/main.cpp.o"
-  "CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o"
+  "CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o"
   "CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.o"
   "CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.o"
   "CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.o"

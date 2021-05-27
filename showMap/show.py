@@ -8,7 +8,7 @@ z=None
 
 def string_to_float(str):
   return float(str)
-with open("test9.txt", "r") as f:
+with open("LanePoints.txt", "r") as f:
   lines = f.readlines()
   for data in lines:
      if(len(data)<5):

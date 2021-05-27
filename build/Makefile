@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named OutputPoint
+
+# Build rule for target.
+OutputPoint: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 OutputPoint
+.PHONY : OutputPoint
+
+# fast build rule for target.
+OutputPoint/fast:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/build
+.PHONY : OutputPoint/fast
+
+#=============================================================================
 # Target rules for targets named HdmapEngine
 
 # Build rule for target.
@@ -123,32 +136,62 @@ HdmapEngine/fast:
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/build
 .PHONY : HdmapEngine/fast
 
-src/HdmapEngine.o: src/HdmapEngine.cpp.o
+src/HdMapEngine/HdmapEngine.o: src/HdMapEngine/HdmapEngine.cpp.o
 
-.PHONY : src/HdmapEngine.o
+.PHONY : src/HdMapEngine/HdmapEngine.o
 
 # target to build an object file
-src/HdmapEngine.cpp.o:
-	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o
-.PHONY : src/HdmapEngine.cpp.o
+src/HdMapEngine/HdmapEngine.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/HdMapEngine/HdmapEngine.cpp.o
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o
+.PHONY : src/HdMapEngine/HdmapEngine.cpp.o
 
-src/HdmapEngine.i: src/HdmapEngine.cpp.i
+src/HdMapEngine/HdmapEngine.i: src/HdMapEngine/HdmapEngine.cpp.i
 
-.PHONY : src/HdmapEngine.i
+.PHONY : src/HdMapEngine/HdmapEngine.i
 
 # target to preprocess a source file
-src/HdmapEngine.cpp.i:
-	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.i
-.PHONY : src/HdmapEngine.cpp.i
+src/HdMapEngine/HdmapEngine.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/HdMapEngine/HdmapEngine.cpp.i
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.i
+.PHONY : src/HdMapEngine/HdmapEngine.cpp.i
 
-src/HdmapEngine.s: src/HdmapEngine.cpp.s
+src/HdMapEngine/HdmapEngine.s: src/HdMapEngine/HdmapEngine.cpp.s
 
-.PHONY : src/HdmapEngine.s
+.PHONY : src/HdMapEngine/HdmapEngine.s
 
 # target to generate assembly for a file
-src/HdmapEngine.cpp.s:
-	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.s
-.PHONY : src/HdmapEngine.cpp.s
+src/HdMapEngine/HdmapEngine.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/HdMapEngine/HdmapEngine.cpp.s
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.s
+.PHONY : src/HdMapEngine/HdmapEngine.cpp.s
+
+src/OutputPoint.o: src/OutputPoint.cpp.o
+
+.PHONY : src/OutputPoint.o
+
+# target to build an object file
+src/OutputPoint.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/OutputPoint.cpp.o
+.PHONY : src/OutputPoint.cpp.o
+
+src/OutputPoint.i: src/OutputPoint.cpp.i
+
+.PHONY : src/OutputPoint.i
+
+# target to preprocess a source file
+src/OutputPoint.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/OutputPoint.cpp.i
+.PHONY : src/OutputPoint.cpp.i
+
+src/OutputPoint.s: src/OutputPoint.cpp.s
+
+.PHONY : src/OutputPoint.s
+
+# target to generate assembly for a file
+src/OutputPoint.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/OutputPoint.cpp.s
+.PHONY : src/OutputPoint.cpp.s
 
 src/element/Connection.o: src/element/Connection.cpp.o
 
@@ -156,6 +199,7 @@ src/element/Connection.o: src/element/Connection.cpp.o
 
 # target to build an object file
 src/element/Connection.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Connection.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.o
 .PHONY : src/element/Connection.cpp.o
 
@@ -165,6 +209,7 @@ src/element/Connection.i: src/element/Connection.cpp.i
 
 # target to preprocess a source file
 src/element/Connection.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Connection.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.i
 .PHONY : src/element/Connection.cpp.i
 
@@ -174,6 +219,7 @@ src/element/Connection.s: src/element/Connection.cpp.s
 
 # target to generate assembly for a file
 src/element/Connection.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Connection.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.s
 .PHONY : src/element/Connection.cpp.s
 
@@ -183,6 +229,7 @@ src/element/Junction.o: src/element/Junction.cpp.o
 
 # target to build an object file
 src/element/Junction.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Junction.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Junction.cpp.o
 .PHONY : src/element/Junction.cpp.o
 
@@ -192,6 +239,7 @@ src/element/Junction.i: src/element/Junction.cpp.i
 
 # target to preprocess a source file
 src/element/Junction.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Junction.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Junction.cpp.i
 .PHONY : src/element/Junction.cpp.i
 
@@ -201,6 +249,7 @@ src/element/Junction.s: src/element/Junction.cpp.s
 
 # target to generate assembly for a file
 src/element/Junction.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Junction.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Junction.cpp.s
 .PHONY : src/element/Junction.cpp.s
 
@@ -210,6 +259,7 @@ src/element/Lane.o: src/element/Lane.cpp.o
 
 # target to build an object file
 src/element/Lane.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Lane.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Lane.cpp.o
 .PHONY : src/element/Lane.cpp.o
 
@@ -219,6 +269,7 @@ src/element/Lane.i: src/element/Lane.cpp.i
 
 # target to preprocess a source file
 src/element/Lane.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Lane.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Lane.cpp.i
 .PHONY : src/element/Lane.cpp.i
 
@@ -228,6 +279,7 @@ src/element/Lane.s: src/element/Lane.cpp.s
 
 # target to generate assembly for a file
 src/element/Lane.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Lane.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Lane.cpp.s
 .PHONY : src/element/Lane.cpp.s
 
@@ -237,6 +289,7 @@ src/element/LaneSection.o: src/element/LaneSection.cpp.o
 
 # target to build an object file
 src/element/LaneSection.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/LaneSection.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.o
 .PHONY : src/element/LaneSection.cpp.o
 
@@ -246,6 +299,7 @@ src/element/LaneSection.i: src/element/LaneSection.cpp.i
 
 # target to preprocess a source file
 src/element/LaneSection.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/LaneSection.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.i
 .PHONY : src/element/LaneSection.cpp.i
 
@@ -255,6 +309,7 @@ src/element/LaneSection.s: src/element/LaneSection.cpp.s
 
 # target to generate assembly for a file
 src/element/LaneSection.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/LaneSection.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.s
 .PHONY : src/element/LaneSection.cpp.s
 
@@ -264,6 +319,7 @@ src/element/Point.o: src/element/Point.cpp.o
 
 # target to build an object file
 src/element/Point.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Point.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.o
 .PHONY : src/element/Point.cpp.o
 
@@ -273,6 +329,7 @@ src/element/Point.i: src/element/Point.cpp.i
 
 # target to preprocess a source file
 src/element/Point.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Point.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.i
 .PHONY : src/element/Point.cpp.i
 
@@ -282,6 +339,7 @@ src/element/Point.s: src/element/Point.cpp.s
 
 # target to generate assembly for a file
 src/element/Point.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Point.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.s
 .PHONY : src/element/Point.cpp.s
 
@@ -291,6 +349,7 @@ src/element/Road.o: src/element/Road.cpp.o
 
 # target to build an object file
 src/element/Road.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Road.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Road.cpp.o
 .PHONY : src/element/Road.cpp.o
 
@@ -300,6 +359,7 @@ src/element/Road.i: src/element/Road.cpp.i
 
 # target to preprocess a source file
 src/element/Road.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Road.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Road.cpp.i
 .PHONY : src/element/Road.cpp.i
 
@@ -309,6 +369,7 @@ src/element/Road.s: src/element/Road.cpp.s
 
 # target to generate assembly for a file
 src/element/Road.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/element/Road.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/element/Road.cpp.s
 .PHONY : src/element/Road.cpp.s
 
@@ -345,6 +406,7 @@ src/tinyxml/tinyxml2.o: src/tinyxml/tinyxml2.cpp.o
 
 # target to build an object file
 src/tinyxml/tinyxml2.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tinyxml/tinyxml2.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tinyxml/tinyxml2.cpp.o
 .PHONY : src/tinyxml/tinyxml2.cpp.o
 
@@ -354,6 +416,7 @@ src/tinyxml/tinyxml2.i: src/tinyxml/tinyxml2.cpp.i
 
 # target to preprocess a source file
 src/tinyxml/tinyxml2.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tinyxml/tinyxml2.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tinyxml/tinyxml2.cpp.i
 .PHONY : src/tinyxml/tinyxml2.cpp.i
 
@@ -363,6 +426,7 @@ src/tinyxml/tinyxml2.s: src/tinyxml/tinyxml2.cpp.s
 
 # target to generate assembly for a file
 src/tinyxml/tinyxml2.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tinyxml/tinyxml2.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tinyxml/tinyxml2.cpp.s
 .PHONY : src/tinyxml/tinyxml2.cpp.s
 
@@ -372,6 +436,7 @@ src/tools/KD-tree.o: src/tools/KD-tree.cpp.o
 
 # target to build an object file
 src/tools/KD-tree.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tools/KD-tree.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/KD-tree.cpp.o
 .PHONY : src/tools/KD-tree.cpp.o
 
@@ -381,6 +446,7 @@ src/tools/KD-tree.i: src/tools/KD-tree.cpp.i
 
 # target to preprocess a source file
 src/tools/KD-tree.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tools/KD-tree.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/KD-tree.cpp.i
 .PHONY : src/tools/KD-tree.cpp.i
 
@@ -390,6 +456,7 @@ src/tools/KD-tree.s: src/tools/KD-tree.cpp.s
 
 # target to generate assembly for a file
 src/tools/KD-tree.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tools/KD-tree.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/KD-tree.cpp.s
 .PHONY : src/tools/KD-tree.cpp.s
 
@@ -399,6 +466,7 @@ src/tools/TransformUtil.o: src/tools/TransformUtil.cpp.o
 
 # target to build an object file
 src/tools/TransformUtil.cpp.o:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tools/TransformUtil.cpp.o
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/TransformUtil.cpp.o
 .PHONY : src/tools/TransformUtil.cpp.o
 
@@ -408,6 +476,7 @@ src/tools/TransformUtil.i: src/tools/TransformUtil.cpp.i
 
 # target to preprocess a source file
 src/tools/TransformUtil.cpp.i:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tools/TransformUtil.cpp.i
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/TransformUtil.cpp.i
 .PHONY : src/tools/TransformUtil.cpp.i
 
@@ -417,6 +486,7 @@ src/tools/TransformUtil.s: src/tools/TransformUtil.cpp.s
 
 # target to generate assembly for a file
 src/tools/TransformUtil.cpp.s:
+	$(MAKE) -f CMakeFiles/OutputPoint.dir/build.make CMakeFiles/OutputPoint.dir/src/tools/TransformUtil.cpp.s
 	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/tools/TransformUtil.cpp.s
 .PHONY : src/tools/TransformUtil.cpp.s
 
@@ -428,10 +498,14 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... OutputPoint"
 	@echo "... HdmapEngine"
-	@echo "... src/HdmapEngine.o"
-	@echo "... src/HdmapEngine.i"
-	@echo "... src/HdmapEngine.s"
+	@echo "... src/HdMapEngine/HdmapEngine.o"
+	@echo "... src/HdMapEngine/HdmapEngine.i"
+	@echo "... src/HdMapEngine/HdmapEngine.s"
+	@echo "... src/OutputPoint.o"
+	@echo "... src/OutputPoint.i"
+	@echo "... src/OutputPoint.s"
 	@echo "... src/element/Connection.o"
 	@echo "... src/element/Connection.i"
 	@echo "... src/element/Connection.s"

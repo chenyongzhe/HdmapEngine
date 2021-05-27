@@ -81,28 +81,28 @@ CMakeFiles/HdmapEngine.dir/src/main.cpp.o.provides: CMakeFiles/HdmapEngine.dir/s
 CMakeFiles/HdmapEngine.dir/src/main.cpp.o.provides.build: CMakeFiles/HdmapEngine.dir/src/main.cpp.o
 
 
-CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o: CMakeFiles/HdmapEngine.dir/flags.make
-CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o: ../src/HdmapEngine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlurobot/project/HdmapEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o -c /home/jlurobot/project/HdmapEngine/src/HdmapEngine.cpp
+CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o: CMakeFiles/HdmapEngine.dir/flags.make
+CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o: ../src/HdMapEngine/HdmapEngine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlurobot/project/HdmapEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o -c /home/jlurobot/project/HdmapEngine/src/HdMapEngine/HdmapEngine.cpp
 
-CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jlurobot/project/HdmapEngine/src/HdmapEngine.cpp > CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.i
+CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jlurobot/project/HdmapEngine/src/HdMapEngine/HdmapEngine.cpp > CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.i
 
-CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jlurobot/project/HdmapEngine/src/HdmapEngine.cpp -o CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.s
+CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jlurobot/project/HdmapEngine/src/HdMapEngine/HdmapEngine.cpp -o CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.s
 
-CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o.requires:
+CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o.requires:
 
-.PHONY : CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o.requires
+.PHONY : CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o.requires
 
-CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o.provides: CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o.requires
-	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o.provides.build
-.PHONY : CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o.provides
+CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o.provides: CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o.requires
+	$(MAKE) -f CMakeFiles/HdmapEngine.dir/build.make CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o.provides.build
+.PHONY : CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o.provides
 
-CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o.provides.build: CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o
+CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o.provides.build: CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o
 
 
 CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.o: CMakeFiles/HdmapEngine.dir/flags.make
@@ -324,7 +324,7 @@ CMakeFiles/HdmapEngine.dir/src/tools/KD-tree.cpp.o.provides.build: CMakeFiles/Hd
 # Object files for target HdmapEngine
 HdmapEngine_OBJECTS = \
 "CMakeFiles/HdmapEngine.dir/src/main.cpp.o" \
-"CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o" \
+"CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o" \
 "CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.o" \
 "CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.o" \
 "CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.o" \
@@ -339,7 +339,7 @@ HdmapEngine_OBJECTS = \
 HdmapEngine_EXTERNAL_OBJECTS =
 
 HdmapEngine: CMakeFiles/HdmapEngine.dir/src/main.cpp.o
-HdmapEngine: CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o
+HdmapEngine: CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o
 HdmapEngine: CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.o
 HdmapEngine: CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.o
 HdmapEngine: CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.o
@@ -360,7 +360,7 @@ CMakeFiles/HdmapEngine.dir/build: HdmapEngine
 .PHONY : CMakeFiles/HdmapEngine.dir/build
 
 CMakeFiles/HdmapEngine.dir/requires: CMakeFiles/HdmapEngine.dir/src/main.cpp.o.requires
-CMakeFiles/HdmapEngine.dir/requires: CMakeFiles/HdmapEngine.dir/src/HdmapEngine.cpp.o.requires
+CMakeFiles/HdmapEngine.dir/requires: CMakeFiles/HdmapEngine.dir/src/HdMapEngine/HdmapEngine.cpp.o.requires
 CMakeFiles/HdmapEngine.dir/requires: CMakeFiles/HdmapEngine.dir/src/element/LaneSection.cpp.o.requires
 CMakeFiles/HdmapEngine.dir/requires: CMakeFiles/HdmapEngine.dir/src/element/Point.cpp.o.requires
 CMakeFiles/HdmapEngine.dir/requires: CMakeFiles/HdmapEngine.dir/src/element/Connection.cpp.o.requires
