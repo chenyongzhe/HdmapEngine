@@ -12,7 +12,7 @@
 #include"element/Point.h"
 using namespace std;
 
-    const int N = 50005;
+    const long N = 5000005;
     const int k = 2; //2D-tree
 
     class KDTree {

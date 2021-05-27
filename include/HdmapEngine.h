@@ -25,42 +25,42 @@ class HdmapEngine
 
 private :
     //解析Lanesection
-    bool paserLaneSection(XMLElement* sectionNode,Road& road);
+    bool paserLaneSection(XMLElement* sectionNode,Road* road);
     //解析Lane
-	bool paserLane(XMLElement* laneNode,LaneSection& laneSection);
+	bool paserLane(XMLElement* laneNode,LaneSection* laneSection);
 	//解析 Junction
 	bool paserJunction(XMLElement* junctionNode);
 	//解析 Road
 	bool paserRoad(XMLElement* roadNode);
 	
 	//解析StopLineCrosswalk
-	bool paserStopLineCrosswalk(XMLElement* roadNode,Road &road);
+	bool paserStopLineCrosswalk(XMLElement* roadNode,Road *road);
 	//解析信号灯
-	bool paserTrafficLight(XMLElement* roadNode,Road &road);
+	bool paserTrafficLight(XMLElement* roadNode,Road *road);
 
 public:
 	//lane哈希表,用于通过uid快速搜索车道
-	map<string,Lane> laneMap;
+	map<string,Lane*> laneMap;
 	//road 哈希表用于 通过id快速搜索道路
-	map<int,Road> roadMap;
+	map<int,Road*> roadMap;
 	//lanesection哈希表,用于通过id快速搜索lanesection
-	map<int,LaneSection> laneSectionMap;
+	map<int,LaneSection*> laneSectionMap;
 	//Junction哈希表，用于通过id快速搜索Junction
 	map<int, Junction> junctionMap;
 	//connection哈希表，用于通过vitruallane_id快速搜索路口连接关系
-	map<string,Connection> connectionMap;
+	map<string,Connection*> connectionMap;
 	//stopLine哈希表，用于通过id快速搜索停车线
 	map<string,StopLine> stopLineMap;
 	//道路列表
-	vector<Road> roadList;
+	vector<Road *> roadList;
 	//车道列表
-	vector<Lane> laneList;
+	vector<Lane*> laneList;
 	//lansection列表
-	vector<LaneSection> lansectionList;
+	vector<LaneSection*> lansectionList;
 	//junction列表
 	vector<Junction> junctionList;
 	//connection列表 
-	vector<Connection> connectionList;
+	vector<Connection*> connectionList;
 
 	HdmapEngine(double lat,double lon,double alt);
 	~HdmapEngine();
@@ -77,7 +77,8 @@ public:
 	TransformUtil* trans;
 	//搜索树
 	KDTree* tree;
-
+	//搜索当前车道内distance 范围内的车道中心点 point
+	vector<Point* > searchPoints(double x, double y, double distance);
 	
 	
 };

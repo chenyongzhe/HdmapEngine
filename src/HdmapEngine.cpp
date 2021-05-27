@@ -1,8 +1,68 @@
 //@author chenyonzghe
 //Email 1276316543@qq.com
 
-
+//int countnum=0;
 #include"HdmapEngine.h"
+
+void linerinsert(Point* b,vector<Point*>& points){
+    //cout << "section: " << a << " " << b << endl;
+  //cout<<"插值"<<endl;
+  if(points.size()==0){
+   // cout<<"插值1"<<endl;
+    points.push_back(b);return;
+  }
+  //cout<<"插值2"<<endl;
+  Point* a=points[points.size()-1];
+  //cout<<1<<endl;
+  double dis=sqrt((a->x-b->x)*(a->x-b->x)+(a->y-b->y)*(a->y-b->y));
+  //cout<<2<<endl;
+  // y=kx+b;
+  //超过半米插值
+  if(dis<0.5){points.push_back(b); return ;}
+  // cout<<2.5<<endl;
+  //cout<<"插值"<<endl;
+  int insertnum=floor(dis/0.4);
+  double k=(a->y-b->y)/(a->x-b->x);
+  double bs=(a->y-k*a->x);
+  double dx=b->x-a->x;
+  double dy=b->y-a->y;
+  //cout<<"插值点数： "<<countnum++<<endl;
+  if(abs(dx)>abs(dy)){
+   double perdx=dx/insertnum;
+   for(int i=1;i<=insertnum;i++){
+    double y=k*(a->x+perdx*i)+bs;
+    Point * p=new Point();
+    p->x=a->x+perdx*i;
+    p->y=y;
+    p->z=a->z;
+    p->lane_id=a->lane_id;
+    points.push_back(p);
+   }
+
+  }else{
+    double perdy=dy/insertnum;
+   for(int i=1;i<=insertnum;i++){
+    double x=((a->y+perdy*i)-bs)/k;
+    Point * p1=new Point();
+    p1->x=x;
+    p1->y=a->y+perdy*i;
+    p1->z=a->z;
+    p1->lane_id=a->lane_id;
+    points.push_back(p1);
+   }
+
+  }
+ // Point* p=new Point();
+  //cout<<3<<endl;
+  points.push_back(b);
+  //cout<<4<<endl;
+
+  
+    
+}
+
+
+
 
 
 int road_id;
@@ -40,55 +100,47 @@ vector<string> split(const string& str, const string& delim) {
 
 
 void HdmapEngine::printBaseInfo(){
-   cout<<"road size"<<roadList.size()<<endl;
-	cout<<"section size"<<lansectionList.size()<<endl;
-  cout<<"lane size "<<laneList.size()<<endl;
-  cout<<"connection size"<<connectionList.size()<<endl;
-  vector<Point> centerLintePoints;
-  for(int i=0;i<laneList.size();i++){
-    //if(laneList[i].centerLinePoints!=NULL)
-    for(int j=0;j<laneList[i].centerLinePoints.size();j++){
-      centerLintePoints.push_back(laneList[i].centerLinePoints[j]);
-    }  
+ //   cout<<"road size"<<roadList.size()<<endl;
+	// cout<<"section size"<<lansectionList.size()<<endl;
+ //  cout<<"lane size "<<laneList.size()<<endl;
+ //  cout<<"connection size"<<connectionList.size()<<endl;
+  
 
-  }
-  cout<<"centerpoint size "<<centerLintePoints.size()<<endl;
- tree->read_in(centerLintePoints);
- //cout<<"centerpoint size "<<centerLintePoints.size()<<endl;
-  cout<<"创建搜索树成功"<<endl;
+
+
   for(int i=0;i<laneList.size();i++){
     //cout<<"left size "<<laneList[i].leftPoints.size()<<endl;
-    for(int j=0;j<laneList[i].leftPoints.size();j++){
-      cout<<laneList[i].leftPoints[j].x<<" "<<laneList[i].leftPoints[j].y<<" "<<laneList[i].leftPoints[j].z<<endl;
+    for(int j=0;j<laneList[i]->leftPoints.size();j++){
+      cout<<laneList[i]->leftPoints[j]->x<<" "<<laneList[i]->leftPoints[j]->y<<" "<<laneList[i]->leftPoints[j]->z<<endl;
     }
-    cout<<"11"<<endl;
+    cout<<"##"<<endl;
    // cout<<"right size "<<laneList[i].rightPoints.size()<<endl;
-    for(int j=0;j<laneList[i].rightPoints.size();j++){
-      cout<<laneList[i].rightPoints[j].x<<" "<<laneList[i].rightPoints[j].y<<" "<<laneList[i].rightPoints[j].z<<endl;
+    for(int j=0;j<laneList[i]->rightPoints.size();j++){
+      cout<<laneList[i]->rightPoints[j]->x<<" "<<laneList[i]->rightPoints[j]->y<<" "<<laneList[i]->rightPoints[j]->z<<endl;
 
     }
-    cout<<"11"<<endl;
+    cout<<"##"<<endl;
 
   }
 
 
 
   // for(int i=0;i<roadList.size();i++){
-  //      if(roadList[i].predecessor_elementType=="junction"&&roadList[i].successor_elementType=="junction"){
-  //          cout<<"前驱： "<<roadList[i].predecessor_id<<"后继 ： "<<roadList[i].successor_id<<"road id: "<<roadList[i].road_id<<endl;
+  //      if(roadList[i]->predecessor_elementType=="junction"&&roadList[i]->successor_elementType=="junction"){
+  //          cout<<"前驱： "<<roadList[i]->predecessor_id<<"后继 ： "<<roadList[i]->successor_id<<"road id: "<<roadList[i]->road_id<<endl;
   //       }
 
   //   }
 	// for (int i = 0; i < roadList.size(); ++i)
 	// {
-	// 	cout<<"road_id "<<roadList[i].road_id<<" "<<"predecessor_elementType "<<roadList[i].predecessor_elementType<<" "<<"predecessor_id " <<roadList[i].predecessor_id<<" "<<"successor_elementType "<<roadList[i].successor_elementType<<" "<<"  successor_id " <<roadList[i].successor_id<<"  road_length  "<<roadList[i].length<<endl;
+	// 	cout<<"road_id "<<roadList[i]->road_id<<" "<<"predecessor_elementType "<<roadList[i]->predecessor_elementType<<" "<<"predecessor_id " <<roadList[i]->predecessor_id<<" "<<"successor_elementType "<<roadList[i]->successor_elementType<<" "<<"  successor_id " <<roadList[i]->successor_id<<"  road_length  "<<roadList[i]->length<<endl;
 	// }
 }
 
 //解析Lanesection
-bool HdmapEngine::paserLaneSection(XMLElement* sectionNode,Road& road){
+bool HdmapEngine::paserLaneSection(XMLElement* sectionNode,Road* road){
   //cout<<"解析Lanesection"<<endl;
-  LaneSection section;
+  LaneSection* section=new LaneSection();
 
   XMLElement* center = sectionNode->FirstChildElement("center");
 	if(center== NULL){
@@ -108,8 +160,8 @@ bool HdmapEngine::paserLaneSection(XMLElement* sectionNode,Road& road){
 	}
 	string length_str=geometry->Attribute("length");
 	double length=atof(length_str.c_str());	
-	section.length=length;
-	section.laneSection_id=laneSection_id;
+	section->length=length;
+	section->laneSection_id=laneSection_id;
 	//解析Lane
     if(sectionNode!=NULL){
 
@@ -128,17 +180,19 @@ bool HdmapEngine::paserLaneSection(XMLElement* sectionNode,Road& road){
                          XMLElement* pointNode=pointSetNode1->FirstChildElement("point");
                          //获取车道边界点
                         while(pointNode!=NULL){
-                           Point point;
-                           point.lon=atof(pointNode->Attribute("x"));
-                           point.lat=atof(pointNode->Attribute("y"));
+                           Point* point=new Point();
+                           point->lon=atof(pointNode->Attribute("x"));
+                           point->lat=atof(pointNode->Attribute("y"));
                            Eigen::Vector3d xyz(0,0,0);
-                           trans->gps2xyz(point.lon, point.lat, 235.120,xyz);
+                           trans->gps2xyz(point->lon, point->lat, 235.120,xyz);
                            //std::cout<<xyz;
-                           point.x=xyz[0];
-                           point.y=xyz[1];
-                           //cout<<"x: "<< point.x<<" y: "<<point.y<<endl;
-                           point.z=atof(pointNode->Attribute("z"));
-                           section.centerborder.push_back(point);
+                           point->x=xyz[0];
+                           point->y=xyz[1];
+                          //cout<<"x: "<< point->x<<" y: "<<point->y<<endl;
+                           point->z=atof(pointNode->Attribute("z"));
+                           //section->centerborder.push_back(point);
+                           linerinsert(point,section->centerborder);
+                           //cout<<"out"<<endl;
 
                           pointNode=pointNode->NextSiblingElement("point");
                         }
@@ -157,7 +211,7 @@ bool HdmapEngine::paserLaneSection(XMLElement* sectionNode,Road& road){
                     borderType.sOffset=atof(borderTypeNode->Attribute("sOffset"));
                   if(borderTypeNode->Attribute("eOffset")!=NULL)
                      borderType.eOffset=atof(borderTypeNode->Attribute("eOffset"));
-                  section.centerborderTypes.push_back(borderType);
+                  section->centerborderTypes.push_back(borderType);
 
                    borderTypeNode=borderTypeNode->NextSiblingElement("borderType");
                   } 
@@ -203,59 +257,60 @@ bool HdmapEngine::paserLaneSection(XMLElement* sectionNode,Road& road){
 
 
     }
-
-  for(int i=0;i<section.lanes.size();i++){
-    if(section.lanes[i].id>1){
-      section.lanes[i].rightPoints.assign(section.lanes[i+1].leftPoints.begin(),section.lanes[i+1].leftPoints.end());
-      section.lanes[i].rightborderTypes.assign(section.lanes[i+1].leftborderTypes.begin(),section.lanes[i+1].leftborderTypes.end());
-    }else if(section.lanes[i].id==1){
-      section.lanes[i].rightPoints.assign(section.centerborder.begin(),section.centerborder.end());
-       section.lanes[i].rightborderTypes.assign(section.centerborderTypes.begin(),section.centerborderTypes.end());
-    }else if(section.lanes[i].id==-1){
-       section.lanes[i].leftPoints.assign(section.centerborder.begin(),section.centerborder.end());
-       section.lanes[i].leftborderTypes.assign(section.centerborderTypes.begin(),section.centerborderTypes.end());
-    }else if(section.lanes[i].id <-1){
-       section.lanes[i].leftPoints.assign(section.lanes[i-1].rightPoints.begin(),section.lanes[i-1].rightPoints.end());
-       section.lanes[i].leftborderTypes.assign(section.lanes[i-1].rightborderTypes.begin(),section.lanes[i-1].rightborderTypes.end());
+   //cout<<"out6"<<endl;
+  for(int i=0;i<section->lanes.size();i++){
+    if(section->lanes[i]->id>1){
+      section->lanes[i]->rightPoints.assign(section->lanes[i+1]->leftPoints.begin(),section->lanes[i+1]->leftPoints.end());
+      section->lanes[i]->rightborderTypes.assign(section->lanes[i+1]->leftborderTypes.begin(),section->lanes[i+1]->leftborderTypes.end());
+    }else if(section->lanes[i]->id==1){
+      section->lanes[i]->rightPoints.assign(section->centerborder.begin(),section->centerborder.end());
+       section->lanes[i]->rightborderTypes.assign(section->centerborderTypes.begin(),section->centerborderTypes.end());
+    }else if(section->lanes[i]->id==-1){
+       section->lanes[i]->leftPoints.assign(section->centerborder.begin(),section->centerborder.end());
+       section->lanes[i]->leftborderTypes.assign(section->centerborderTypes.begin(),section->centerborderTypes.end());
+    }else if(section->lanes[i]->id <-1){
+       section->lanes[i]->leftPoints.assign(section->lanes[i-1]->rightPoints.begin(),section->lanes[i-1]->rightPoints.end());
+       section->lanes[i]->leftborderTypes.assign(section->lanes[i-1]->rightborderTypes.begin(),section->lanes[i-1]->rightborderTypes.end());
 
     }
 
-    
+  
    
    //添加到laneList
-   laneList.push_back(section.lanes[i]);
+   laneList.push_back(section->lanes[i]);
    //加入lanemap
-   laneMap[section.lanes[i].uid]=section.lanes[i];
+   laneMap[section->lanes[i]->uid]=section->lanes[i];
 
   }
+    ///cout<<"out6-"<<endl;
 
 
 
 
 	//加入到road
 
-	road.laneSections.push_back(section);
+	road->laneSections.push_back(section);
 	lansectionList.push_back(section);
-	laneSectionMap[section.laneSection_id]=section;
+	laneSectionMap[section->laneSection_id]=section;
     
   
 }
 
 
-bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
+bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection* laneSection){
    //cout<<"解析Lane"<<endl;
-   Lane lane;
+   Lane* lane=new Lane();
    int lane_id=atoi(laneNode->Attribute("id"));
    string uid=laneNode->Attribute("uid");
-   lane.uid=uid;
-   lane.id=lane_id;
-   lane.turn_type=laneNode->Attribute("turnType");
-   lane.type=laneNode->Attribute("type");
-   lane.road_id=road_id;
+   lane->uid=uid;
+   lane->id=lane_id;
+   lane->turn_type=laneNode->Attribute("turnType");
+   lane->type=laneNode->Attribute("type");
+   lane->road_id=road_id;
    if(laneNode->Attribute("direction")!=NULL){
-   	lane.direction=laneNode->Attribute("direction");
+   	lane->direction=laneNode->Attribute("direction");
    }else{
-   	lane.direction="unknow";
+   	lane->direction="unknow";
    }
 
    //车道长度、车道中心点线
@@ -264,29 +319,34 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
    if(centerLineNode!=NULL){
      XMLElement* geometryNode=centerLineNode->FirstChildElement("geometry");
      if(geometryNode!=NULL){
-       lane.lane_length=atof(geometryNode->Attribute("length"));
+       lane->lane_length=atof(geometryNode->Attribute("length"));
        XMLElement* pointSetNode=geometryNode->FirstChildElement("pointSet");
        if(pointSetNode!=NULL){
        	  XMLElement* pointNode=pointSetNode->FirstChildElement("point");
        	  while(pointNode!=NULL){
-            Point point;
-            point.lon=atof(pointNode->Attribute("x"));
-            point.lat=atof(pointNode->Attribute("y"));
+            Point* point=new Point();
+            point->lon=atof(pointNode->Attribute("x"));
+            point->lat=atof(pointNode->Attribute("y"));
             Eigen::Vector3d xyz(0,0,0);
-            trans->gps2xyz(point.lon, point.lat, 235.120,xyz);
+            trans->gps2xyz(point->lon, point->lat, 235.120,xyz);
             //std::cout<<xyz;
-            point.x=xyz[0];
-            point.y=xyz[1];
+            point->x=xyz[0];
+            point->y=xyz[1];
             //cout<<"x: "<< point.x<<" y: "<<point.y<<endl;
-            point.z=atof(pointNode->Attribute("z"));
-            point.lane_id=lane.uid;
+            point->z=atof(pointNode->Attribute("z"));
+            point->lane_id=lane->uid;
             //cout<<"x "<< point.x<<" y "<<point.y<<"  z "<<point.z<<endl;
-            lane.centerLinePoints.push_back(point);
+            //cout<<"out2"<<endl;
+
+            linerinsert(point,lane->centerLinePoints);
+            //cout<<"out2-"<<endl;
+
+            //lane->centerLinePoints.push_back(point);
        	  	pointNode=pointNode->NextSiblingElement("point");
 
        	  }        
        }  
-     //cout<<"车道长度"<<lane.lane_length<<endl;
+     //cout<<"车道长度"<<lane->lane_length<<endl;
       }
    }
 
@@ -300,27 +360,34 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
       XMLElement* pointNode=pointSetNode1->FirstChildElement("point");
       //获取车道边界点
       while(pointNode!=NULL){
-          Point point;
-            point.lon=atof(pointNode->Attribute("x"));
-            point.lat=atof(pointNode->Attribute("y"));
+            Point* point=new Point();
+            point->lon=atof(pointNode->Attribute("x"));
+            point->lat=atof(pointNode->Attribute("y"));
             Eigen::Vector3d xyz(0,0,0);
-            trans->gps2xyz(point.lon, point.lat, 235.120,xyz);
+            trans->gps2xyz(point->lon, point->lat, 235.120,xyz);
             //std::cout<<xyz;
-            point.x=xyz[0];
-            point.y=xyz[1];
+            point->x=xyz[0];
+            point->y=xyz[1];
             //cout<<"x: "<< point.x<<" y: "<<point.y<<endl;
-            point.z=atof(pointNode->Attribute("z"));
-        lane.borderPoints.push_back(point);
+            point->z=atof(pointNode->Attribute("z"));
+        lane->borderPoints.push_back(point);
         if(lane_id>0){
-          lane.leftPoints.push_back(point);
+          //cout<<"out3"<<endl;
+
+         linerinsert(point,lane->leftPoints);
+         //cout<<"out3-"<<endl;
+          //lane->leftPoints.push_back(point);
         }else if(lane_id<0){
-          lane.rightPoints.push_back(point);
+          //cout<<"out4"<<endl;
+         linerinsert(point,lane->rightPoints);
+         //cout<<"out4-"<<endl;
+         // lane->rightPoints.push_back(point);
         }
         pointNode=pointNode->NextSiblingElement("point");
       }
     }
    }
-
+   //cout<<"out5"<<endl;
    //获取车道边界类型
    XMLElement* borderTypeNode=borderNode->FirstChildElement("borderType");
    while(borderTypeNode!=NULL){
@@ -333,11 +400,11 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
        borderType.sOffset=atof(borderTypeNode->Attribute("sOffset"));
        if(borderTypeNode->Attribute("eOffset")!=NULL)
        borderType.eOffset=atof(borderTypeNode->Attribute("eOffset"));
-       lane.borderTypes.push_back(borderType);
+       lane->borderTypes.push_back(borderType);
        if(lane_id>0){
-          lane.leftborderTypes.push_back(borderType);
+          lane->leftborderTypes.push_back(borderType);
         }else if(lane_id<0){
-          lane.rightborderTypes.push_back(borderType);
+          lane->rightborderTypes.push_back(borderType);
         }
 
        borderTypeNode=borderTypeNode->NextSiblingElement("borderType");
@@ -365,7 +432,7 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
           widthsampleAssociate.rightWidth=atof(sampleAssociateNode->Attribute("rightWidth"));
 
        widthsampleAssociate.width=widthsampleAssociate.leftWidth + widthsampleAssociate.rightWidth;
-       lane.widthsampleAssociates.push_back(widthsampleAssociate);
+       lane->widthsampleAssociates.push_back(widthsampleAssociate);
        sampleAssociateNode=sampleAssociateNode->NextSiblingElement("sampleAssociate");
       }
     }
@@ -374,9 +441,9 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
    //车道限速
    XMLElement* speedNode=laneNode->FirstChildElement("speed");
    if(speedNode!=NULL){
-   	 lane.speed_limit=atof(speedNode->Attribute("max"));
+   	 lane->speed_limit=atof(speedNode->Attribute("max"));
    }
-   //cout<<"车道限速 "<<lane.speed_limit<<endl;
+   //cout<<"车道限速 "<<lane->speed_limit<<endl;
 
    //获取前驱后继
    XMLElement* linkNode=laneNode->FirstChildElement("link");
@@ -389,12 +456,12 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
         if(subName=="predecessor"){
         //前驱
           string id=subNode->Attribute("id");	
-          lane.predecessors.push_back(id);
+          lane->predecessors.push_back(id);
 
         }else if(subName=="successor"){
         //后继
           string id=subNode->Attribute("id");	
-          lane.successors.push_back(id);
+          lane->successors.push_back(id);
 
         }else if(subName=="neighbor"){
          //邻近车道
@@ -406,10 +473,10 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
                    string dir=subNode->Attribute("direction");
                    if(dir=="same"){
                    	   //cout<<"同向左近邻"<<endl;
-                       lane.leftNeighbor_sameDirect_id=subNode->Attribute("id");
+                       lane->leftNeighbor_sameDirect_id=subNode->Attribute("id");
                    }else if(dir=="opposite"){
                    	   //cout<<"反向左近邻"<<endl;
-                       lane.leftNeighbor_reverseDirect_id=subNode->Attribute("id");
+                       lane->leftNeighbor_reverseDirect_id=subNode->Attribute("id");
                    }
 
                 }else if(side=="right"){
@@ -418,10 +485,10 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
                    string dir=subNode->Attribute("direction");
                    if(dir=="same"){
                    	   //cout<<"同向右近邻"<<endl;
-                       lane.rightNeighbor_sameDirect_id=subNode->Attribute("id");
+                       lane->rightNeighbor_sameDirect_id=subNode->Attribute("id");
                    }else if(dir=="opposite"){
                    	   //cout<<"反向右近邻"<<endl;
-                       lane.rightNeighbor_reverseDirect_id=subNode->Attribute("id");
+                       lane->rightNeighbor_reverseDirect_id=subNode->Attribute("id");
                    }
                 }
         }
@@ -430,7 +497,8 @@ bool HdmapEngine::paserLane(XMLElement* laneNode,LaneSection& laneSection){
 
    }
     //加入到lanesection
-   laneSection.lanes.push_back(lane);
+   laneSection->lanes.push_back(lane);
+   //cout<<"out5-"<<endl;
 
 	
 }
@@ -442,57 +510,57 @@ bool HdmapEngine::paserJunction(XMLElement* junctionNode){
 
    Junction junction;
 
-   Connection connection; 
+   Connection* connection=new Connection(); 
    //cout<<"解析junction"<<endl;
-   connection.junction_id=atoi(junctionNode->Attribute("id"));
+   connection->junction_id=atoi(junctionNode->Attribute("id"));
    junction.id=atoi(junctionNode->Attribute("id"));
    XMLElement* connectionNode=junctionNode->FirstChildElement("connection");
    while(connectionNode!=NULL){
      int in_road_id=atoi(connectionNode->Attribute("incomingRoad"));
-     connection.in_road_id=in_road_id;
+     connection->in_road_id=in_road_id;
      int connectionRoad_id=atoi(connectionNode->Attribute("connectingRoad"));
      for(int i=0;i<roadList.size();i++){
      	//cout<<"i"<<i<<endl;
-     	//cout<<"roadid "<<roadList[i].road_id<<endl;
+     	//cout<<"roadid "<<roadList[i]->road_id<<endl;
      	//cout<<"inroadid"<<in_road_id<<endl;
-       if(roadList[i].road_id==in_road_id){
-       	  //cout<<"laneSections size"<<roadList[i].laneSections.size()<<endl;
-          for(int j=0;j<roadList[i].laneSections.size();j++){
+       if(roadList[i]->road_id==in_road_id){
+       	  //cout<<"laneSections size"<<roadList[i]->laneSections.size()<<endl;
+          for(int j=0;j<roadList[i]->laneSections.size();j++){
           	//cout<<"j"<<j<<endl;
-            for(int z=0;z<roadList[i].laneSections[j].lanes.size();z++){
+            for(int z=0;z<roadList[i]->laneSections[j]->lanes.size();z++){
             	//cout<<"z"<<z<<endl;
-              for(int y=0;y<roadList[i].laneSections[j].lanes[z].successors.size();y++){
+              for(int y=0;y<roadList[i]->laneSections[j]->lanes[z]->successors.size();y++){
               	   //cout<<"y"<<y<<endl;
-                    if(atoi(split(roadList[i].laneSections[j].lanes[z].successors[y],"_")[0].c_str())==connectionRoad_id){
-                      //cout<<"进入路口车道为"<<roadList[i].laneSections[j].lanes[z].uid<<" 路口虚拟车道为 "<<roadList[i].laneSections[j].lanes[z].successors[y];
-                      connection.in_lane_id=roadList[i].laneSections[j].lanes[z].uid;
-                      connection.virtualLaneId=roadList[i].laneSections[j].lanes[z].successors[y];
-                      auto  lanemapiter=laneMap.find(roadList[i].laneSections[j].lanes[z].successors[y]);
+                    if(atoi(split(roadList[i]->laneSections[j]->lanes[z]->successors[y],"_")[0].c_str())==connectionRoad_id){
+                      //cout<<"进入路口车道为"<<roadList[i]->laneSections[j]->lanes[z].uid<<" 路口虚拟车道为 "<<roadList[i]->laneSections[j]->lanes[z].successors[y];
+                      connection->in_lane_id=roadList[i]->laneSections[j]->lanes[z]->uid;
+                      connection->virtualLaneId=roadList[i]->laneSections[j]->lanes[z]->successors[y];
+                      auto  lanemapiter=laneMap.find(roadList[i]->laneSections[j]->lanes[z]->successors[y]);
                       if(lanemapiter!=laneMap.end()){
-                      	 connection.centerLinePoints.assign(lanemapiter->second.centerLinePoints.begin(),lanemapiter->second.centerLinePoints.end());
+                      	 connection->centerLinePoints.assign(lanemapiter->second->centerLinePoints.begin(),lanemapiter->second->centerLinePoints.end());
                       }
 
-                      // for (int cc = 0; cc < connection.centerLinePoints.size(); ++cc)
+                      // for (int cc = 0; cc < connection->centerLinePoints.size(); ++cc)
                       // {
                       // 	/* code */
-                      // 	cout<<"x"<<connection.centerLinePoints[cc].x<<"  y  "<<connection.centerLinePoints[cc].y<<endl;
+                      // 	cout<<"x"<<connection->centerLinePoints[cc].x<<"  y  "<<connection->centerLinePoints[cc].y<<endl;
                       // }
                      
                     //搜索驶离路口的车道
                      
                     for(int a=0;a<roadList.size();a++){
-                       if(roadList[a].road_id==atoi(split(roadList[i].laneSections[j].lanes[z].successors[y],"_")[0].c_str())){
-                       	int section_index=atoi(split(roadList[i].laneSections[j].lanes[z].successors[y],"_")[1].c_str());
-                       for(int b=0;b<roadList[a].laneSections[section_index].lanes.size();b++){
-                           if(roadList[a].laneSections[section_index].lanes[b].uid==roadList[i].laneSections[j].lanes[z].successors[y]){
+                       if(roadList[a]->road_id==atoi(split(roadList[i]->laneSections[j]->lanes[z]->successors[y],"_")[0].c_str())){
+                       	int section_index=atoi(split(roadList[i]->laneSections[j]->lanes[z]->successors[y],"_")[1].c_str());
+                       for(int b=0;b<roadList[a]->laneSections[section_index]->lanes.size();b++){
+                           if(roadList[a]->laneSections[section_index]->lanes[b]->uid==roadList[i]->laneSections[j]->lanes[z]->successors[y]){
                              //cout<<"驶离路口的车道 ";
-                             for(int c=0;c<roadList[a].laneSections[section_index].lanes[b].successors.size();c++){
-                             	//cout<<roadList[a].laneSections[section_index].lanes[b].successors[c]<<endl;
-                             	connection.out_lane_id=roadList[a].laneSections[section_index].lanes[b].successors[c];
-                             	connection.out_road_id=atoi(split(roadList[a].laneSections[section_index].lanes[b].successors[c],"_")[0].c_str());
+                             for(int c=0;c<roadList[a]->laneSections[section_index]->lanes[b]->successors.size();c++){
+                             	//cout<<roadList[a]->laneSections[section_index]->lanes[b].successors[c]<<endl;
+                             	connection->out_lane_id=roadList[a]->laneSections[section_index]->lanes[b]->successors[c];
+                             	connection->out_road_id=atoi(split(roadList[a]->laneSections[section_index]->lanes[b]->successors[c],"_")[0].c_str());
                              	connectionList.push_back(connection);
                              	junction.connections.push_back(connection);
-                             	connectionMap[connection.virtualLaneId]=connection;
+                             	connectionMap[connection->virtualLaneId]=connection;
 
                              }
 
@@ -520,17 +588,17 @@ bool HdmapEngine::paserJunction(XMLElement* junctionNode){
     if(outlineNode!=NULL){
       XMLElement* cornerGlobalNode=outlineNode->FirstChildElement("cornerGlobal");
       while(cornerGlobalNode!=NULL){
-       Point point;
-       point.lon=atof(cornerGlobalNode->Attribute("x"));
-       point.lat=atof(cornerGlobalNode->Attribute("y"));
+       Point* point=new Point();
+       point->lon=atof(cornerGlobalNode->Attribute("x"));
+       point->lat=atof(cornerGlobalNode->Attribute("y"));
        Eigen::Vector3d xyz(0,0,0);
-       trans->gps2xyz(point.lon, point.lat, 235.120,xyz);
-       //std::cout<<xyz;
-       point.x=xyz[0];
-       point.y=xyz[1];
-      //cout<<"x: "<< point.x<<" y: "<<point.y<<endl;
-       point.z=atof(cornerGlobalNode->Attribute("z"));
-       //point.lane_id=lane.uid;
+       trans->gps2xyz(point->lon, point->lat, 235.120,xyz);
+            //std::cout<<xyz;
+       point->x=xyz[0];
+       point->y=xyz[1];
+            //cout<<"x: "<< point.x<<" y: "<<point.y<<endl;
+       point->z=atof(cornerGlobalNode->Attribute("z"));
+       //point.lane_id=lane->uid;
        junction.outline.push_back(point);
 
        cornerGlobalNode=cornerGlobalNode->NextSiblingElement("cornerGlobal");
@@ -538,9 +606,9 @@ bool HdmapEngine::paserJunction(XMLElement* junctionNode){
 
       Point p;
       for(int index=0;index<junction.outline.size();index++){
-        p.x+=junction.outline[index].x;
-        p.y+=junction.outline[index].y;
-        p.z+=junction.outline[index].z;
+        p.x+=junction.outline[index]->x;
+        p.y+=junction.outline[index]->y;
+        p.z+=junction.outline[index]->z;
 
       }
       p.x=p.x/junction.outline.size();
@@ -566,7 +634,7 @@ bool HdmapEngine::paserJunction(XMLElement* junctionNode){
 
 
 
-bool HdmapEngine::paserStopLineCrosswalk(XMLElement* roadNode,Road &road){
+bool HdmapEngine::paserStopLineCrosswalk(XMLElement* roadNode,Road *road){
 
     XMLElement* objectsNode=roadNode->FirstChildElement("objects");
     if(objectsNode!=NULL){
@@ -591,7 +659,7 @@ bool HdmapEngine::paserStopLineCrosswalk(XMLElement* roadNode,Road &road){
                     point.z =atof(pointNode->Attribute("z"));
                     //cout<<"point"<<endl;
                     stopline.points.push_back(point);
-                    road.stopLines.push_back(stopline);
+                    road->stopLines.push_back(stopline);
                     stopLineMap[stopline.id]=stopline;
                     pointNode=pointNode->NextSiblingElement("point");
                 }
@@ -612,7 +680,7 @@ bool HdmapEngine::paserStopLineCrosswalk(XMLElement* roadNode,Road &road){
                 point.y =atof(cornerGlobalNode->Attribute("y"));
                 point.z =atof(cornerGlobalNode->Attribute("z"));
                 crosswalk.outline.push_back(point);
-                road.crosswalks.push_back(crosswalk);
+                road->crosswalks.push_back(crosswalk);
                 cornerGlobalNode=cornerGlobalNode->NextSiblingElement("cornerGlobal");
               }
             }
@@ -631,7 +699,7 @@ bool HdmapEngine::paserStopLineCrosswalk(XMLElement* roadNode,Road &road){
 
 
 //解析交通灯
-bool HdmapEngine::paserTrafficLight(XMLElement* roadNode,Road &road){
+bool HdmapEngine::paserTrafficLight(XMLElement* roadNode,Road *road){
 
    XMLElement* signalsNode=roadNode->FirstChildElement("signals");
    if(signalsNode!=NULL){
@@ -686,6 +754,8 @@ bool HdmapEngine::paserTrafficLight(XMLElement* roadNode,Road &road){
           }
         }
         signalNode=signalsNode->NextSiblingElement("signal");
+
+        road->trafficLights.push_back(trafficLight);
       }
 
    }
@@ -728,15 +798,15 @@ bool HdmapEngine::paserRoad(XMLElement* roadNode){
 	            predecessor_id=atoi(preNode->Attribute("elementId"));
 			}
 
-     Road road(road_id,predecessor_elementType,predecessor_id,successor_elementType,successor_id);
+     Road* road=new Road(road_id,predecessor_elementType,predecessor_id,successor_elementType,successor_id);
 
      int jun=atoi(roadNode->Attribute("junction"));
      if(jun==-1){
       //非路口道路
-      road.isJunctionRoad=false;
+      road->isJunctionRoad=false;
      }else{
       //路口道路
-      road.isJunctionRoad=true;
+      road->isJunctionRoad=true;
      }
 
      
@@ -756,9 +826,9 @@ bool HdmapEngine::paserRoad(XMLElement* roadNode){
     paserStopLineCrosswalk(roadNode,road);
 
 
-     road.length=road.getRoadLength();
+     road->length=road->getRoadLength();
      roadList.push_back(road);
-     roadMap[road.road_id]=road;
+     roadMap[road->road_id]=road;
 
 
 
@@ -800,6 +870,20 @@ bool HdmapEngine::paserApolloxml(const char* file_name){
        
 		
 	}
+
+ //创建搜索树
+  vector<Point> centerLintePoints;
+  for(int i=0;i<laneList.size();i++){
+  //if(laneList[i].centerLinePoints!=NULL)
+    for(int j=0;j<laneList[i]->centerLinePoints.size();j++){
+      centerLintePoints.push_back(*(laneList[i]->centerLinePoints[j]));
+    }  
+
+  }
+  //cout<<"centerpoint size "<<centerLintePoints.size()<<endl;
+ tree->read_in(centerLintePoints);
+ //cout<<"centerpoint size "<<centerLintePoints.size()<<endl;
+ // cout<<"创建搜索树成功"<<endl;
    
 		//printRoad();
 
@@ -810,16 +894,16 @@ bool HdmapEngine::paserApolloxml(const char* file_name){
 
 Road * HdmapEngine::getRoadBetweenJunctions(Junction& jun_first,Junction& jun_second){
     for(int i=0;i<roadList.size();i++){
-       if(roadList[i].predecessor_elementType=="junction"&&(roadList[i].predecessor_id==jun_first.id)){
-        if(roadList[i].successor_elementType=="junction"&&(roadList[i].successor_id==jun_second.id)){
-           return &roadList[i];
+       if(roadList[i]->predecessor_elementType=="junction"&&(roadList[i]->predecessor_id==jun_first.id)){
+        if(roadList[i]->successor_elementType=="junction"&&(roadList[i]->successor_id==jun_second.id)){
+           return roadList[i];
        }
 
         }
 
-        if(roadList[i].predecessor_elementType=="junction"&&(roadList[i].predecessor_id==jun_second.id)){
-        if(roadList[i].successor_elementType=="junction"&&(roadList[i].successor_id==jun_first.id)){
-           return &roadList[i];
+        if(roadList[i]->predecessor_elementType=="junction"&&(roadList[i]->predecessor_id==jun_second.id)){
+        if(roadList[i]->successor_elementType=="junction"&&(roadList[i]->successor_id==jun_first.id)){
+           return roadList[i];
        }
        
         }
@@ -839,15 +923,48 @@ Lane * HdmapEngine::searchLaneByxy(double x,double y){
     double dis=1000000000;
     Point result;
     tree->find_nearest_point(x,y,result,dis);
+    cout<<result.lane_id<<endl;
     auto iter=laneMap.find(result.lane_id);
     if(iter==laneMap.end()){
       return NULL;
     }
-    return &(iter->second);
+    return iter->second;
     //cout<<"data_ szie "<<tree->_data.size()<<endl;
     // cout<<"res "<<result.x<<" "<<result.y<<endl;
     // cout<<"dis  "<<dis<<endl;
     // cout<<"搜索车道结果为"<<result.lane_id<<endl;
 
 
+}
+
+
+vector<Point*> HdmapEngine::searchPoints(double x, double y, double distance){
+       vector<Point*> res;
+       vector<Point*> res2;
+       double dis=1000000000;
+       Point result;
+       tree->find_nearest_point(x,y,result,dis);
+       cout<<result.lane_id<<endl;
+       auto iter=laneMap.find(result.lane_id);
+       Lane *lane=iter->second;
+       if(lane!=NULL){
+        
+       bool first=true;
+       for(int j=0;j<lane->centerLinePoints.size();j++){
+            if(abs(result.x-lane->centerLinePoints[j]->x)<=0.01&&abs(result.y-lane->centerLinePoints[j]->y)<=0.01){
+                 first=false;
+            }
+            if(first){
+
+                 res.push_back(lane->centerLinePoints[j]);
+             }else{
+              res2.push_back(lane->centerLinePoints[j]);
+             }
+             
+          }  
+            
+        }
+        cout<<"res1点数为"<<res.size()<<endl;
+         cout<<"res2点数为"<<res2.size()<<endl;
+      return res;
 }

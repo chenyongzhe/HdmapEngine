@@ -33,7 +33,7 @@ public:
 	//虚拟车道id
 	string virtualLaneId;
 	//虚拟车道参考线（离散点）
-	 vector<Point> centerLinePoints;
+	 vector<Point*> centerLinePoints;
 
 	
 };

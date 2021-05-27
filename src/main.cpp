@@ -16,9 +16,18 @@ int main()
     //参数为地图原点维度 经度 高程
     HdmapEngine engine(43.856238, 125.3265161, 235.120);
     if(!engine.paserApolloxml("../mapdata/OriginTest.xml")) cout<<"解析失败"<<endl;
-    engine.printBaseInfo();
+    //HdmapEngine engine(0, 0, 235.120);
+   //if(!engine.paserApolloxml("../mapdata/JiuGongGe.xml")) cout<<"解析失败"<<endl;
+    
+   //engine.printBaseInfo();
 
-
+    vector<Point*> points=engine.searchPoints(-45,159,120);
+    //cout<<"搜索到在(-45,159）120米范围内点数："<<points.size()<<endl;
+    // for (int i = 0; i < points.size(); ++i)
+    // {
+    // 	cout<<"x: "<<points[i]->x<<"y:  "<<points[i]->y<<endl;
+    // }
+    
     // //map 查到测试demo 
     // auto iter_junction=engine.junctionMap.find(462);
     // if(iter_junction!=engine.junctionMap.end()){

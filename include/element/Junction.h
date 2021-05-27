@@ -12,9 +12,9 @@ public:
 	~Junction();
 	int id;
 	//路口连接关系
-	vector<Connection> connections;
+	vector<Connection*> connections;
 	//路口边界轮廓
-	vector<Point> outline;
+	vector<Point*> outline;
 	//路口中心坐标、东北天坐标系x,y,z
 	Point center;
 

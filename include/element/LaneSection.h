@@ -13,12 +13,12 @@ public:
 	//长度
 	double length;
 	//车道列表
-    vector<Lane> lanes;
+    vector<Lane *> lanes;
     //laneSection id
     int laneSection_id;
 
     //中心车道线
-    vector<Point> centerborder;
+    vector<Point*> centerborder;
     //中心车道线border
     vector<BorderType>  centerborderTypes;
 

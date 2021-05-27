@@ -65,7 +65,7 @@ public:
 	//车道方向:forward、backward、bidirection unknow ....
 	string direction;
 	//车道中心点参考线（离散点）
-	 vector<Point> centerLinePoints;
+	 vector<Point*> centerLinePoints;
 
 	 //车道宽度采样
     vector<WidthsampleAssociate> widthsampleAssociates;
@@ -73,16 +73,16 @@ public:
     //车道边界类型(xml里的)
     vector<BorderType>  borderTypes;
     //车道边界点（xml里的）
-    vector<Point> borderPoints;
+    vector<Point*> borderPoints;
 
 
      //车道左右边界
      //左边界点
-     vector<Point> leftPoints;
+     vector<Point*> leftPoints;
      //车道左边界类型
      vector<BorderType>  leftborderTypes;
     //右边界点
-     vector<Point> rightPoints;
+     vector<Point*> rightPoints;
      //车道右边界类型
     vector<BorderType>  rightborderTypes;
 

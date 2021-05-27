@@ -49,7 +49,7 @@ Road::Road(int road_id,string & predecessor_elementType,int predecessor_id, stri
 double Road::getRoadLength(){
 	double len=0;
     for(int i=0;i<laneSections.size();i++){
-        len+=laneSections[i].length;
+        len+=laneSections[i]->length;
             
     }
     return len;

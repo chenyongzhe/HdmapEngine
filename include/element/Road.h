@@ -20,6 +20,7 @@ public:
 	int road_id;
 	//标记是否路口道路
 	bool isJunctionRoad;
+	
 	string predecessor_elementType;
 	int predecessor_id;
 	int successor_id;
@@ -27,7 +28,7 @@ public:
 
 	double length=-1;
 	//lanesection
-	vector<LaneSection> laneSections;
+	vector<LaneSection*> laneSections;
 	//停止线
 	vector<StopLine> stopLines;
 	//人行横道
