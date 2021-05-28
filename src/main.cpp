@@ -21,7 +21,7 @@ int main()
     
    //engine.printBaseInfo();
 
-    vector<Point*> points=engine.searchPoints(-45,159,120);
+    vector<Point*> points=engine.searchPoints(26.4847,173.924,120);
     //cout<<"搜索到在(-45,159）120米范围内点数："<<points.size()<<endl;
     // for (int i = 0; i < points.size(); ++i)
     // {

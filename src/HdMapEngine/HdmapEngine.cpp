@@ -944,7 +944,7 @@ vector<Point*> HdmapEngine::searchPoints(double x, double y, double distance){
        double dis=1000000000;
        Point result;
        tree->find_nearest_point(x,y,result,dis);
-       cout<<result.lane_id<<endl;
+       cout<<"lane_id 为"<<result.lane_id<<endl;
        auto iter=laneMap.find(result.lane_id);
        Lane *lane=iter->second;
        if(lane!=NULL){
